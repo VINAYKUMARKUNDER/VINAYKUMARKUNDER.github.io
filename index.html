@@ -65,7 +65,7 @@
                         goal oriented project. Strongly interested in obtaining a software
                         Developer position to work on enhancing the product experience.
                         </p>
-                    <a  href="https://drive.google.com/file/d/1kD6xZMRgwfWEgdotlP9yO2qcagqpRrTZ/view?usp=sharing" target="_blank">Download Resume</a>
+                    <a  href="https://drive.google.com/file/d/1FLkQqnylhTMXJ7--aHfY-JtTPow-8JwG/view" target="_blank">Download Resume</a>
                 </div>
             </div>
         </div>
@@ -245,23 +245,23 @@
                 </div>
                 <div class="column right">
                     <div class="text">Message me</div>
-                    <form action="#">
+                    <form action="#" onsubmit="sendMail(); reset(); return false">
                         <div class="fields">
                             <div class="field name">
-                                <input type="text" placeholder="Name" required>
+                                <input type="text" id="name" placeholder="Name" required>
                             </div>
                             <div class="field email">
-                                <input type="email" placeholder="Email" required>
+                                <input type="email" id="email" placeholder="Email" required>
                             </div>
                         </div>
                         <div class="field">
-                            <input type="text" placeholder="Subject" required>
+                            <input type="text" id="subject" placeholder="Subject" required>
                         </div>
                         <div class="field textarea">
-                            <textarea cols="30" rows="10" placeholder="Message.." required></textarea>
+                            <textarea cols="30" rows="10" id="message" placeholder="Message.." required></textarea>
                         </div>
                         <div class="button-area">
-                            <button type="submit">message </button>
+                            <button type="submit" id="submit">message </button>
                         </div>
                     </form>
                 </div>
@@ -275,5 +275,24 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <script src="https://smtpjs.com/v3/smtp.js"> </script>
+
+    <script>
+
+        function sendMail(){
+         Email.send({
+                Host : "smtp.gmail.com",
+                Username : "vinay3000111@gmail.com",
+                Password : "Vinay@1313",
+                To : 'vinay3000111@gmail.com',
+                From : document.getElementById("email").value,
+                Subject : "I am a value",
+                Body : "maja aa raha"
+                }).then(
+            message => alert(message)
+                );
+            }
+    </script>
 </body>
 </java>
