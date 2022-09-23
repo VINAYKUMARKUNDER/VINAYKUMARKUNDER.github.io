@@ -280,6 +280,7 @@ section .title::after{
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
 .services .serv-content .card:hover{
     background: crimson;
 }
@@ -680,4 +681,34 @@ footer span a:hover{
         font-size: 23px;
         line-height: 38px;
     }
+}
+
+
+
+#git{
+    margin-right: 110px;
+    padding-top: 20px;
+}
+#git>a>img{
+    width: 30px;
+}
+#git>a>img:hover{
+    width: 35px;
+    color: blue;
+    background-color: blue;
+}
+
+
+#live{
+    margin-left: 80px;
+    padding-top: 20px;
+}
+#live>a{
+    color: #fff;
+}
+#live>a:hover{
+    font-weight: bold;
+    color: blue;
+    text-decoration: underline;
+    font-size: 20px;
 }
