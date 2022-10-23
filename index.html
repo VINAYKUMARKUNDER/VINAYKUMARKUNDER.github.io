@@ -340,13 +340,16 @@
           </div>
           <div class="column right">
             <div class="text">Message me</div>
-            <form action="#" onsubmit="sendMail(); reset(); return false">
+
+
+
+            <form action="https://getform.io/f/745bc11f-2be2-4d1e-a96c-25092d058df7" method="POST">
               <div class="fields">
                 <div class="field name">
-                  <input type="text" id="name" placeholder="Name" required />
+                  <input type="text" id="name" placeholder="Name" name="name" required />
                 </div>
                 <div class="field email">
-                  <input type="email" id="email" placeholder="Email" required />
+                  <input type="email" id="email" placeholder="Email" name="email" required />
                 </div>
               </div>
               <div class="field">
@@ -354,6 +357,7 @@
                   type="text"
                   id="subject"
                   placeholder="Subject"
+                  name="gender"
                   required
                 />
               </div>
@@ -363,6 +367,7 @@
                   rows="10"
                   id="message"
                   placeholder="Message.."
+                  name="message"
                   required
                 ></textarea>
               </div>
@@ -370,6 +375,10 @@
                 <button type="submit" id="submit">message</button>
               </div>
             </form>
+
+
+
+
           </div>
         </div>
         <div class="Contect">
