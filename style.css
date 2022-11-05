@@ -35,7 +35,7 @@ a{
       display: flex;
       
       margin-top: 15px;
-      background-color: crimson;
+      background-color: rgb(138, 220, 23);
       border: 1px solid white;
       
       border-radius: 8px;
@@ -47,7 +47,7 @@ a{
   .github_Button:hover{
       cursor: pointer;
       background-color: #f1f1f1;
-      color: #111;
+      color: rgb(142, 60, 180);
   
   }
   
@@ -55,7 +55,7 @@ a{
       display: flex;
      
       margin-top: 15px;
-      background-color: crimson;
+      background-color: rgb(138, 220, 23);
       border: 1px solid white;
       border-radius: 8px;
       padding: 10px 15px 10px 15px;
@@ -66,7 +66,7 @@ a{
   .deployed_Button:hover{
       cursor: pointer;
       background-color: #f1f1f1;
-      color: #111;  
+      color: rgb(142, 60, 180);  
   }
   
   
@@ -83,7 +83,7 @@ a{
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: rgb(148, 136, 136);
 }
 
 /* all similar content styling codes */
@@ -123,7 +123,7 @@ section .title::before{
     left: 50%;
     width: 180px;
     height: 3px;
-    background: #111;
+    background: rgb(142, 60, 180);
     transform: translateX(-50%);
 }
 section .title::after{
@@ -131,9 +131,9 @@ section .title::after{
     bottom: -8px;
     left: 50%;
     font-size: 20px;
-    color: crimson;
+    color: rgb(138, 220, 23);
     padding: 0 5px;
-    background: #fff;
+    background: rgb(255, 255, 255);
     transform: translateX(-50%);
 }
 
@@ -148,7 +148,7 @@ section .title::after{
 }
 .navbar.sticky{
     padding: 15px 0;
-    background: crimson;
+    background: rgb(138, 220, 23);
 }
 .navbar .max-width{
     display: flex;
@@ -156,16 +156,16 @@ section .title::after{
     justify-content: space-between;
 }
 .navbar .logo a{
-    color: #fff;
+    color: rgba(124, 21, 202, 0.952);
     font-size: 35px;
     font-weight: 600;
 }
 .navbar .logo a span{
-    color: crimson;
+    color: rgb(138, 220, 23);
     transition: all 0.3s ease;
 }
 .navbar.sticky .logo a span{
-    color: #fff;
+    color: rgba(124, 21, 202, 0.952);
 }
 .navbar .menu li{
     list-style: none;
@@ -173,14 +173,14 @@ section .title::after{
 }
 .navbar .menu li a{
     display: block;
-    color: #fff;
+    color: rgb(118, 3, 195);
     font-size: 18px;
     font-weight: 500;
     margin-left: 25px;
     transition: color 0.3s ease;
 }
 .navbar .menu li a:hover{
-    color: crimson;
+    color: rgb(138, 220, 23);
 }
 .navbar.sticky .menu li a:hover{
     color: #fff;
@@ -197,7 +197,7 @@ section .title::after{
     position: fixed;
     height: 45px;
     width: 42px;
-    background: crimson;
+    background: rgb(138, 220, 23);
     right: 30px;
     bottom: 10px;
     text-align: center;
@@ -225,9 +225,9 @@ section .title::after{
 /* home section styling */
 .home{
     display: flex;
-    background: url("images/other.jpg") no-repeat center;
+    background: url("images/back.jfif") no-repeat center;
     height: 100vh;
-    color: #fff;
+    color: rgba(124, 21, 202, 0.952);
     min-height: 500px;
     background-size: cover;
     background-attachment: fixed;
@@ -253,23 +253,23 @@ section .title::after{
     margin: 5px 0;
 }
 .home .home-content .text-3 span{
-    color: crimson;
+    color: rgb(138, 220, 23);
     font-weight: 500;
 }
 .home .home-content a{
     display: inline-block;
-    background: crimson;
+    background: rgb(138, 220, 23);
     color: #fff;
     font-size: 25px;
     padding: 12px 36px;
     margin-top: 20px;
     font-weight: 400;
     border-radius: 6px;
-    border: 2px solid crimson;
+    border: 2px solid rgb(138, 220, 23);
     transition: all 0.3s ease;
 }
 .home .home-content a:hover{
-    color: crimson;
+    color: rgb(138, 220, 23);
     background: none;
 }
 
@@ -295,32 +295,32 @@ section .title::after{
     margin-bottom: 10px;
 }
 .about .about-content .right .text span{
-    color: crimson;
+    color: rgb(138, 220, 23);
 }
 .about .about-content .right p{
     text-align: justify;
 }
 .about .about-content .right a{
     display: inline-block;
-    background: crimson;
+    background: rgb(138, 220, 23);
     color: #fff;
     font-size: 20px;
     font-weight: 500;
     padding: 10px 30px;
     margin-top: 20px;
     border-radius: 6px;
-    border: 2px solid crimson;
+    border: 2px solid rgb(138, 220, 23);
     transition: all 0.3s ease;
 }
 .about .about-content .right a:hover{
-    color: crimson;
+    color: rgb(138, 220, 23);
     background: none;
 }
 
 /* services section styling */
 .services, .teams{
     color:#fff;
-    background: #111;
+    background: rgb(142, 60, 180);
 }
 .services .title::before,
 .teams .title::before{
@@ -328,12 +328,12 @@ section .title::after{
 }
 .services .title::after,
 .teams .title::after{
-    background: #111;
+    background: rgb(142, 60, 180);
     content: "what i Work";
 }
 .services .serv-content .card{
     width: calc(33% - 20px);
-    background: #222;
+    background: rgba(124, 21, 202, 0.952);
     text-align: center;
     border-radius: 6px;
     padding: 50px 25px;
@@ -342,7 +342,7 @@ section .title::after{
 }
 
 .services .serv-content .card:hover{
-    background: crimson;
+    background: rgb(138, 220, 23);
 }
 .services .serv-content .card .box{
     transition: all 0.3s ease;
@@ -352,7 +352,7 @@ section .title::after{
 }
 .services .serv-content .card i{
     font-size: 50px;
-    color: crimson;
+    color: rgb(138, 220, 23);
     transition: color 0.3s ease;
 }
 .services .serv-content .card:hover i{
@@ -382,18 +382,18 @@ section .title::after{
 }
 .skills .skills-content .left a{
     display: inline-block;
-    background: crimson;
+    background: rgb(138, 220, 23);
     color: #fff;
     font-size: 18px;
     font-weight: 500;
     padding: 8px 16px;
     margin-top: 20px;
     border-radius: 6px;
-    border: 2px solid crimson;
+    border: 2px solid rgb(138, 220, 23);
     transition: all 0.3s ease;
 }
 .skills .skills-content .left a:hover{
-    color: crimson;
+    color: rgb(138, 220, 23);
     background: none;
 }
 .skills .skills-content .right .bars{
@@ -421,7 +421,7 @@ section .title::after{
     height: 100%;
     left: 0;
     top: 0;
-    background: crimson;
+    background: rgb(138, 220, 23);
 }
 .skills-content .right .java::before{
     width: 75%;
@@ -455,7 +455,7 @@ section .title::after{
     transition: all 0.3s ease;
 }
 .teams .carousel .card:hover{
-    background: crimson;
+    background: rgb(138, 220, 23);
 }
 .teams .carousel .card .box{
     display: flex;
@@ -477,7 +477,7 @@ section .title::after{
     width: 150px;
     object-fit: cover;
     border-radius: 50%;
-    border: 5px solid crimson;
+    border: 5px solid rgb(138, 220, 23);
     transition: all 0.3s ease;
 }
 .teams .carousel .card:hover img{
@@ -493,7 +493,7 @@ section .title::after{
     margin: 0 5px;
     outline: none!important;
     border-radius: 50%;
-    border: 2px solid crimson!important;
+    border: 2px solid rgb(138, 220, 23)!important;
     transition: all 0.3s ease;
 }
 .owl-dot.active{
@@ -502,7 +502,7 @@ section .title::after{
 }
 .owl-dot.active,
 .owl-dot:hover{
-    background: crimson!important;
+    background: rgb(138, 220, 23)!important;
 }
 
 /* contact section styling */
@@ -533,7 +533,7 @@ section .title::after{
 }
 .contact .contact-content .row i{
     font-size: 25px;
-    color: crimson;
+    color: rgb(138, 220, 23);
 }
 .contact .contact-content .info .head{
     font-weight: 500;
@@ -592,23 +592,23 @@ section .title::after{
   border-radius: 6px;
   cursor: pointer;
   flex-wrap: nowrap;
-  background: crimson;
-  border: 2px solid crimson;
+  background: rgb(138, 220, 23);
+  border: 2px solid rgb(138, 220, 23);
   transition: all 0.3s ease;
 }
 .right form .button-area button:hover{
-  color: crimson;
+  color: rgb(138, 220, 23);
   background: none;
 }
 /* footer section styling */
 footer{
-    background: #111;
+    background: rgb(142, 60, 180);
     padding: 15px 23px;
     color: #fff;
     text-align: center;
 }
 footer span a{
-    color: crimson;
+    color: rgb(138, 220, 23);
     text-decoration: none;
 }
 footer span a:hover{
@@ -643,7 +643,7 @@ footer span a:hover{
         width: 100%;
         left: -100%;
         top: 0;
-        background: #111;
+        background: rgb(142, 60, 180);
         text-align: center;
         padding-top: 80px;
         transition: all 0.3s ease;
