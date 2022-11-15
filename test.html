@@ -1,0 +1,24 @@
+<html>
+<body><center>
+    <h2>How to trigger a download file when
+clicking an HTML button or JavaScript?</h2>
+<textarea id="text">
+
+</textarea>
+<br/>
+<input type="button" id="specialBtn"
+value="Download" /></center>
+<script>
+function download_file(fileURL, fileName) {
+  var link = document.createElement('a');
+  link.href = fileURL;
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+var fileURL = "https://drive.google.com/file/d/1kD6xZMRgwfWEgdotlP9yO2qcagqpRrTZ/view";
+var fileName = "test.pdf";
+download_file(fileURL, fileName); // fix function name
+</script></body></html>
