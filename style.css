@@ -907,4 +907,109 @@ footer span a:hover{
     text-align: justify;
   }
 
+
+  /* #skill{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    width: 95%;
+   
+    margin-left: 2%;
+    background-color: pink;
+    grid: 10px;
+
+  } */
+
+
+  #techStacks {
+
+    /* border: 1px solid gold; */
+    display: flex;
+    /* grid-template-columns: repeat(4, 100px); */
+    gap: 50px;
+    width: 90%;
+    margin: auto;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    margin-top: 40px;
+  }
+
+  
+  #soft_div {
+
+    /* border: 1px solid gold; */
+    display: flex;
+    /* grid-template-columns: repeat(4, 100px); */
+    gap: 50px;
+    width: 60%;
+    margin: auto;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    margin-top: 40px;
+  }
+  
+  .list {
+    list-style-type: none;
+    text-align: center;
+    height: auto;
+    padding-bottom: 10px;
+  }
+  
+  .list li {
+    font-weight: 500;
+    font-size: 16px;
+  }
+  
+  .tech-card {
+    height: auto;
+    width: 180px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  
+  .tech-card-name {
+    color: black;
+    font-weight: 600;
+    font-size: 17px;
+  }
+  
+  .tech-card-logo {
+    height: 100px;
+    width: 100px;
+    background-color: white;
+    /* border: 1px solid black; */
+    padding: 10px;
+  }
+  
+  .tech-card-logo>img {
+    width: 100%;
+  }
+  
+  .tech-card {
+    /* display: inline-block; */
+    /* vertical-align: middle; */
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+  }
+  
+  .tech-card:hover,
+  .tech-card:focus,
+  .tech-card:active {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+  }
+
  
