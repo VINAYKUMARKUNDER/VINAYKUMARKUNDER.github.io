@@ -597,7 +597,7 @@ section .title::after{
   transition: all 0.3s ease;
 }
 .right form .button-area button:hover{
-  color: rgb(138, 220, 23);
+  color: rgb(172, 219, 105);
   background: none;
 }
 /* footer section styling */
@@ -608,7 +608,7 @@ footer{
     text-align: center;
 }
 footer span a{
-    color: rgb(138, 220, 23);
+    color: rgb(141, 207, 50);
     text-decoration: none;
 }
 footer span a:hover{
