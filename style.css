@@ -777,11 +777,8 @@ footer span a:hover{
 
 #github-stats {
     padding: 100px 10px 10px 10px;
-    /* border: 1px solid; */
     margin-top: -10%;
-
     margin-bottom: -100px;
-    /* height: 400px; */
   }
   
   .github-stats-list {
