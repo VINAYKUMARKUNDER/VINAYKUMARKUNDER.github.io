@@ -177,7 +177,7 @@ section .title::after{
 }
 .navbar .menu li a{
     display: block;
-    color: red;
+    /* color: red; */
     font-size: 18px;
     font-weight: 500;
     margin-left: 25px;
@@ -193,7 +193,7 @@ section .title::after{
 
 /* menu btn styling */
 .menu-btn{
-    color: #fff;
+    /* color: #fff; */
     font-size: 23px;
     cursor: pointer;
     display: none;
@@ -206,7 +206,7 @@ section .title::after{
     bottom: 10px;
     text-align: center;
     line-height: 45px;
-    color: #fff;
+    /* color: #fff; */
     z-index: 9999;
     font-size: 30px;
     border-radius: 6px;
