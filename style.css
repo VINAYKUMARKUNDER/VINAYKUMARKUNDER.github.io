@@ -142,13 +142,17 @@ section .title::after{
     position: fixed;
     width: 100%;
     z-index: 999;
+    /* height: 70px; */
     padding: 30px 0;
+    /* background-color: rgb(109, 111, 112); */
+    
     font-family: 'Ubuntu', sans-serif;
     transition: all 0.3s ease;
 }
 .navbar.sticky{
     padding: 15px 0;
     background: rgb(37, 70, 103);
+   
 }
 .navbar .max-width{
     display: flex;
@@ -173,7 +177,7 @@ section .title::after{
 }
 .navbar .menu li a{
     display: block;
-    color: #fff;
+    color: red;
     font-size: 18px;
     font-weight: 500;
     margin-left: 25px;
@@ -183,8 +187,8 @@ section .title::after{
     color: rgb(37, 70, 103);
 }
 .navbar.sticky .menu li a:hover{
-   
-    color: rgb(195, 3, 77);
+    color: #fff;
+    /* color: rgb(195, 3, 77); */
 }
 
 /* menu btn styling */
@@ -198,7 +202,6 @@ section .title::after{
     position: fixed;
     height: 45px;
     width: 42px;
-    background: rgb(37, 70, 103);
     right: 30px;
     bottom: 10px;
     text-align: center;
