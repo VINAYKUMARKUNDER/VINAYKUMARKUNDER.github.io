@@ -783,6 +783,7 @@ footer span a:hover{
     padding: 100px 10px 10px 10px;
     margin-top: -10%;
     margin-bottom: -100px;
+    text-align: center;
   }
   
   .github-stats-list {
@@ -808,7 +809,27 @@ footer span a:hover{
     transition: transform 0.5s;
     padding: 10px 30px;
   }
+
+   /* .mb-0 {
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+  } */
   
+
+ /* #img {
+    width: 200%;
+    margin-left: 190px;
+    height: 190%;
+    border-radius: 10px;
+    display: block;
+    transition: transform 0.5s;
+    padding: 5px 10px;
+  } 
+   */
   .layer h3 {
     font-weight: 700;
     margin-bottom: 20px;
