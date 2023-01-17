@@ -17,6 +17,7 @@ times.addEventListener('click',function(){
 // document.querySelector("#form").addEventListener("submit",sendEmail());
 function sendEmail(){
     Email.send({
+        
         Host : "smtp.elasticemail.com",
         Username : "vinay3000111@gmail.com",
         Password : "7186272595B8F8315A0E52829E7207630A34",
