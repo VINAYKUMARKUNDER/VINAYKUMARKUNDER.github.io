@@ -34,13 +34,13 @@ body {
 }
 body.dark {
     background-color: var(--bg-dark);
-    --black-100: #2a2a2f;
+    --black-100: #3a3a3c;
     --black-000: var(--bg-dark);
     --main-to-dark-color: var(--bg-dark);
-    --main-to-dark-color2: #151515;
+    --main-to-dark-color2: #313030;
     --dark-to-main-color: var(--main-color);
     --shadow-black-100: var(--shadow-black-300);
-    --black-alpha-100: rgba(255, 255, 255, 0.05);
+    --black-alpha-100: rgba(152, 143, 143, 0.05);
     --black-900: #eff5ff;
     --black-700: #eceff3;
     --black-400: #bbbbbb;
