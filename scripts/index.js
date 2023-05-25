@@ -75,7 +75,7 @@ $("#email_form").submit((e) => {
 const submitForm = (data) => {
     $.ajax({
         method: "POST",
-        url: "https://formsubmit.co/vinay3000111@gmail.com",
+        url: "https://formsubmit.co/vinay30001111@gmail.com",
         // dataType: "json",
         accepts: "application/json",
         data: data,
