@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinay Kumar | Premium Portfolio</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Animation Libraries -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3b82f6',
+                            glow: '#60a5fa',
+                        },
+                        secondary: {
+                            DEFAULT: '#8b5cf6',
+                            glow: '#a78bfa',
+                        },
+                        dark: {
+                            bg: '#030712',    // Deepest gray/black
+                            card: 'rgba(17, 24, 39, 0.7)',  // Glass dark
+                            text: '#f8fafc'
+                        },
+                        light: {
+                            bg: '#f8fafc',
+                            card: 'rgba(255, 255, 255, 0.7)', // Glass light
+                            text: '#1e293b'
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #374151;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .dark .glass {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(17, 24, 39, 0.6);
+        }
+        .light .glass {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Neon Glows */
+        .text-glow {
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+        .dark .text-glow {
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Cursor */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #3b82f6;
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(59, 130, 246, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        /* Hide cursor on touch devices */
+        @media (hover: none) {
+            .cursor-dot, .cursor-outline { display: none; }
+        }
+
+        /* Transitions */
+        body {
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Canvas Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body class="bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text overflow-x-hidden selection:bg-primary-DEFAULT selection:text-white">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+
+    <!-- Background Canvas for Particles -->
+    <canvas id="particles-canvas" class="fixed inset-0 pointer-events-none z-[-1]"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass transition-all duration-300 top-0" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Monogram Logo -->
+                <a href="#home" class="group relative flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-primary-DEFAULT to-secondary-DEFAULT rounded-xl transform rotate-3 hover:rotate-0 transition-all duration-300 shadow-lg hover:shadow-primary-DEFAULT/50">
+                    <span class="font-heading font-bold text-white text-lg md:text-xl tracking-tighter">VK</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link font-medium text-sm tracking-wide hover:text-primary-DEFAULT transition-colors">HOME</a>
+                    <a href="#about" class="nav-link font-medium text-sm tracking-wide hover:text-primary-DEFAULT transition-colors">ABOUT</a>
+                    <a href="#skills" class="nav-link font-medium text-sm tracking-wide hover:text-primary-DEFAULT transition-colors">SKILLS</a>
+                    <a href="#projects" class="nav-link font-medium text-sm tracking-wide hover:text-primary-DEFAULT transition-colors">PROJECTS</a>
+                    <a href="#experience" class="nav-link font-medium text-sm tracking-wide hover:text-primary-DEFAULT transition-colors">EXPERIENCE</a>
+                    <a href="#contact" class="nav-link font-medium text-sm tracking-wide hover:text-primary-DEFAULT transition-colors">CONTACT</a>
+                    
+                    <div class="h-6 w-px bg-gray-300 dark:bg-gray-700 mx-2"></div>
+
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 transform hover:scale-110 focus:outline-none text-xl">
+                        <i class="fas fa-moon dark:hidden text-gray-600"></i>
+                        <i class="fas fa-sun hidden dark:block text-yellow-400 text-glow"></i>
+                    </button>
+
+                    <!-- Resume Button (Navbar) -->
+                    <button onclick="downloadResume()" class="relative overflow-hidden group bg-primary-DEFAULT text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-lg shadow-primary-DEFAULT/30 hover:shadow-primary-DEFAULT/50 transition-all duration-300 transform hover:-translate-y-0.5">
+                        <span class="relative z-10 flex items-center gap-2">
+                            Resume <i class="fas fa-download group-hover:animate-bounce"></i>
+                        </span>
+                        <div class="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center gap-4">
+                    <button id="theme-toggle-mobile" class="p-2 text-xl">
+                        <i class="fas fa-moon dark:hidden text-gray-600"></i>
+                        <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="text-2xl focus:outline-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-light-bg/95 dark:bg-dark-bg/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-center items-center space-y-8">
+            <button id="close-menu-btn" class="absolute top-6 right-6 text-3xl text-gray-500 hover:text-primary-DEFAULT">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="#home" class="mobile-link text-2xl font-bold font-heading hover:text-primary-DEFAULT">Home</a>
+            <a href="#about" class="mobile-link text-2xl font-bold font-heading hover:text-primary-DEFAULT">About</a>
+            <a href="#skills" class="mobile-link text-2xl font-bold font-heading hover:text-primary-DEFAULT">Skills</a>
+            <a href="#projects" class="mobile-link text-2xl font-bold font-heading hover:text-primary-DEFAULT">Projects</a>
+            <a href="#experience" class="mobile-link text-2xl font-bold font-heading hover:text-primary-DEFAULT">Experience</a>
+            <a href="#contact" class="mobile-link text-2xl font-bold font-heading hover:text-primary-DEFAULT">Contact</a>
+            <button onclick="downloadResume()" class="mt-8 px-8 py-3 bg-primary-DEFAULT text-white rounded-full font-bold shadow-lg shadow-primary-DEFAULT/40">
+                Download Resume <i class="fas fa-download ml-2"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <!-- Background Gradients -->
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary-DEFAULT/20 rounded-full blur-[120px] animate-pulse"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary-DEFAULT/20 rounded-full blur-[120px] animate-pulse delay-1000"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <!-- Text Content -->
+            <div class="text-center lg:text-left order-2 lg:order-1 hero-content">
+                <div class="inline-block px-4 py-1.5 mb-6 rounded-full glass border-primary-DEFAULT/30 bg-primary-DEFAULT/5 backdrop-blur-sm" data-aos="fade-down" data-aos-delay="0">
+                    <span class="text-primary-DEFAULT font-semibold text-sm tracking-wider uppercase">Available for Work</span>
+                </div>
+                
+                <h1 class="font-heading text-5xl md:text-7xl font-bold leading-tight mb-6">
+                    <span class="block text-gray-900 dark:text-white" data-aos="fade-up" data-aos-delay="100">Hi, I'm</span>
+                    <span class="gradient-text block mt-2" data-aos="fade-up" data-aos-delay="200">Vinay Kumar</span>
+                </h1>
+                
+                <h2 class="text-2xl md:text-3xl font-medium text-gray-600 dark:text-gray-300 mb-8" data-aos="fade-up" data-aos-delay="300">
+                    Software Engineer <span class="text-gray-400">|</span> Fintech Specialist
+                </h2>
+                
+                <p class="text-lg text-gray-600 dark:text-gray-400 mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed" data-aos="fade-up" data-aos-delay="400">
+                    Specializing in robust backend systems, high-performance databases, and scalable APIs. Passionate about solving complex algorithmic problems (1000+ DSA Solved).
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start" data-aos="fade-up" data-aos-delay="500">
+                    <a href="#projects" class="px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 text-center">
+                        View Projects
+                    </a>
+                    <button onclick="downloadResume()" class="px-8 py-4 glass text-gray-900 dark:text-white rounded-xl font-bold hover:bg-white/10 dark:hover:bg-white/10 transition-all duration-300 border border-gray-200 dark:border-gray-700 flex items-center justify-center gap-2 group">
+                        Download CV 
+                        <span class="bg-primary-DEFAULT text-white rounded-full w-6 h-6 flex items-center justify-center text-xs group-hover:rotate-90 transition-transform">
+                            <i class="fas fa-arrow-down"></i>
+                        </span>
+                    </button>
+                </div>
+
+                <div class="mt-12 flex items-center gap-6 justify-center lg:justify-start text-2xl text-gray-500 dark:text-gray-400" data-aos="fade-up" data-aos-delay="600">
+                    <a href="https://linkedin.com/in/vinay-kumar" target="_blank" class="hover:text-primary-DEFAULT hover:-translate-y-1 transition-all duration-300"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank" class="hover:text-gray-900 dark:hover:text-white hover:-translate-y-1 transition-all duration-300"><i class="fab fa-github"></i></a>
+                    <a href="mailto:vinay3000111@gmail.com" class="hover:text-secondary-DEFAULT hover:-translate-y-1 transition-all duration-300"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <!-- Hero Image / Visual -->
+            <div class="order-1 lg:order-2 flex justify-center perspective-1000" data-aos="fade-left" data-aos-duration="1000">
+                <div class="relative w-72 h-72 md:w-96 md:h-96" id="hero-avatar">
+                    <!-- Spinning Rings -->
+                    <div class="absolute inset-0 border-2 border-primary-DEFAULT/30 rounded-full animate-[spin_10s_linear_infinite]"></div>
+                    <div class="absolute inset-4 border-2 border-secondary-DEFAULT/30 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
+                    
+                    <!-- Avatar Container -->
+                    <div class="absolute inset-8 rounded-full overflow-hidden glass shadow-2xl shadow-primary-DEFAULT/20 border-4 border-white/10 dark:border-white/5">
+                        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center relative">
+                            <!-- Placeholder Avatar -->
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Vinay&backgroundColor=b6e3f4" alt="Vinay Kumar" class="w-full h-full object-cover z-10 hover:scale-110 transition-transform duration-500">
+                            <!-- Glow behind head -->
+                            <div class="absolute w-full h-full bg-primary-DEFAULT/20 blur-3xl z-0"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-4 -right-4 glass px-4 py-2 rounded-xl flex items-center gap-3 animate-bounce shadow-lg">
+                        <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                        <span class="text-sm font-bold text-gray-800 dark:text-white">Open to Work</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <a href="#about" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 text-gray-400 hover:text-primary-DEFAULT transition-colors animate-bounce">
+            <span class="text-xs uppercase tracking-widest">Scroll</span>
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-primary-DEFAULT font-bold tracking-wider uppercase mb-2">About Me</h2>
+                    <h3 class="font-heading text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+                        Crafting scalable <br> <span class="gradient-text">Fintech Solutions</span>
+                    </h3>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                        I am a dedicated Software Engineer at <strong class="text-gray-900 dark:text-white">Plugseal Innovation</strong>, building high-performance backend systems handling thousands of daily transactions.
+                    </p>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                        With a deep expertise in <strong class="text-primary-DEFAULT">Node.js, Java, and PostgreSQL</strong>, I optimize complex data flows and integrate mission-critical APIs. My passion for algorithms is reflected in solving <strong class="text-secondary-DEFAULT">1,000+ DSA problems</strong>.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="glass p-4 rounded-xl text-center hover:bg-primary-DEFAULT/5 transition-colors">
+                            <h4 class="text-3xl font-bold text-primary-DEFAULT mb-1">2+</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Years Experience</p>
+                        </div>
+                        <div class="glass p-4 rounded-xl text-center hover:bg-secondary-DEFAULT/5 transition-colors">
+                            <h4 class="text-3xl font-bold text-secondary-DEFAULT mb-1">10k+</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Daily Transact.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6" data-aos="fade-left">
+                    <!-- Tilt Card 1 -->
+                    <div class="vanilla-tilt glass p-8 rounded-2xl border-l-4 border-primary-DEFAULT hover:shadow-2xl hover:shadow-primary-DEFAULT/10 transition-all">
+                        <i class="fas fa-server text-4xl text-primary-DEFAULT mb-4"></i>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Backend Architecture</h4>
+                        <p class="text-gray-600 dark:text-gray-400">Designing microservices and modular workflows for loan origination systems (LOS).</p>
+                    </div>
+                    
+                    <!-- Tilt Card 2 -->
+                    <div class="vanilla-tilt glass p-8 rounded-2xl border-l-4 border-secondary-DEFAULT hover:shadow-2xl hover:shadow-secondary-DEFAULT/10 transition-all">
+                        <i class="fas fa-database text-4xl text-secondary-DEFAULT mb-4"></i>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Database Optimization</h4>
+                        <p class="text-gray-600 dark:text-gray-400">Optimizing PostgreSQL joins and indexing to reduce dashboard load times by 45%.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-gray-50 dark:bg-dark-bg/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading text-4xl font-bold text-gray-900 dark:text-white mb-4">Technical Arsenal</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary-DEFAULT to-secondary-DEFAULT mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Skill Bars -->
+                <div class="space-y-8" data-aos="fade-right">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Core Competencies</h3>
+                    
+                    <!-- Skill Item -->
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700 dark:text-gray-300">JavaScript / TypeScript</span>
+                            <span class="text-primary-DEFAULT font-bold">95%</span>
+                        </div>
+                        <div class="h-3 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-primary-DEFAULT to-blue-400 w-[95%] rounded-full shadow-[0_0_10px_#3b82f6]"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700 dark:text-gray-300">Node.js / Express / NestJS</span>
+                            <span class="text-primary-DEFAULT font-bold">90%</span>
+                        </div>
+                        <div class="h-3 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-primary-DEFAULT to-blue-400 w-[90%] rounded-full shadow-[0_0_10px_#3b82f6]"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700 dark:text-gray-300">Java / Springboot</span>
+                            <span class="text-secondary-DEFAULT font-bold">85%</span>
+                        </div>
+                        <div class="h-3 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-secondary-DEFAULT to-purple-400 w-[85%] rounded-full shadow-[0_0_10px_#8b5cf6]"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700 dark:text-gray-300">PostgreSQL / SQL</span>
+                            <span class="text-secondary-DEFAULT font-bold">90%</span>
+                        </div>
+                        <div class="h-3 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-secondary-DEFAULT to-purple-400 w-[90%] rounded-full shadow-[0_0_10px_#8b5cf6]"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Tags / Cloud -->
+                <div data-aos="fade-left">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Tools & Frameworks</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 glass rounded-lg text-gray-700 dark:text-gray-300 hover:text-white hover:bg-primary-DEFAULT transition-all cursor-default">React.js</span>
+                        <span class="px-4 py-2 glass rounded-lg text-gray-700 dark:text-gray-300 hover:text-white hover:bg-primary-DEFAULT transition-all cursor-default">Next.js</span>
+                        <span class="px-4 py-2 glass rounded-lg text-gray-700 dark:text-gray-300 hover:text-white hover:bg-primary-DEFAULT transition-all cursor-default">React Native</span>
+                        <span class="px-4 py-2 glass rounded-lg text-gray-700 dark:text-gray-300 hover:text-white hover:bg-secondary-DEFAULT transition-all cursor-default">Prisma</span>
+                        <span class="px-4 py-2 glass rounded-lg text-gray-700 dark:text-gray-300 hover:text-white hover:bg-secondary-DEFAULT transition-all cursor-default">Sequelize</span>
+                        <span class="px-4 py-2 glass rounded-lg text-gray-700 dark:text-gray-300 hover:text-white hover:bg-red-500 transition-all cursor-default">Redis</span>
+                        <span class="px-4 py-2 glass rounded-lg text-gray-700 dark:text-gray-300 hover:text-white hover:bg-green-500 transition-all cursor-default">MongoDB</span>
+                        <span class="px-4 py-2 glass rounded-lg text-gray-700 dark:text-gray-300 hover:text-white hover:bg-orange-500 transition-all cursor-default">Git & GitHub</span>
+                        <span class="px-4 py-2 glass rounded-lg text-gray-700 dark:text-gray-300 hover:text-white hover:bg-blue-600 transition-all cursor-default">Docker</span>
+                        <span class="px-4 py-2 glass rounded-lg text-gray-700 dark:text-gray-300 hover:text-white hover:bg-yellow-500 transition-all cursor-default">Firebase</span>
+                        <span class="px-4 py-2 glass rounded-lg text-gray-700 dark:text-gray-300 hover:text-white hover:bg-indigo-500 transition-all cursor-default">Microservices</span>
+                        <span class="px-4 py-2 glass rounded-lg text-gray-700 dark:text-gray-300 hover:text-white hover:bg-pink-500 transition-all cursor-default">RESTful APIs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16" data-aos="fade-up">
+                <div>
+                    <h2 class="font-heading text-4xl font-bold text-gray-900 dark:text-white mb-2">Featured Projects</h2>
+                    <p class="text-gray-600 dark:text-gray-400">Solving real-world financial problems.</p>
+                </div>
+                <div class="hidden md:block">
+                     <i class="fas fa-arrow-right text-3xl text-primary-DEFAULT animate-pulse"></i>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project Card 1 -->
+                <div class="vanilla-tilt group relative rounded-2xl overflow-hidden glass hover:shadow-2xl hover:shadow-primary-DEFAULT/20 transition-all duration-500" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent opacity-80 z-10"></div>
+                    <div class="h-56 bg-gradient-to-br from-blue-900 to-indigo-900 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+                        <i class="fas fa-piggy-bank text-7xl text-white/50 group-hover:scale-110 group-hover:text-white transition-all duration-500 z-0"></i>
+                    </div>
+                    
+                    <div class="relative z-20 p-6 -mt-12">
+                        <div class="w-12 h-12 bg-primary-DEFAULT rounded-xl flex items-center justify-center shadow-lg mb-4 text-white text-xl">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Loan Origination System</h3>
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-3">
+                            Scaled an end-to-end backend handling 10,000 daily applications. Boosted processing efficiency by 70% through modular workflows.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-xs font-mono px-2 py-1 rounded bg-white/10 text-white">Node.js</span>
+                            <span class="text-xs font-mono px-2 py-1 rounded bg-white/10 text-white">PostgreSQL</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-primary-glow hover:text-white transition-colors">
+                            View Details <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="vanilla-tilt group relative rounded-2xl overflow-hidden glass hover:shadow-2xl hover:shadow-secondary-DEFAULT/20 transition-all duration-500" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent opacity-80 z-10"></div>
+                    <div class="h-56 bg-gradient-to-br from-emerald-900 to-teal-900 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+                        <i class="fas fa-mobile-alt text-7xl text-white/50 group-hover:scale-110 group-hover:text-white transition-all duration-500 z-0"></i>
+                    </div>
+                    
+                    <div class="relative z-20 p-6 -mt-12">
+                        <div class="w-12 h-12 bg-secondary-DEFAULT rounded-xl flex items-center justify-center shadow-lg mb-4 text-white text-xl">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Micro-Finance App</h3>
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-3">
+                            Enabled 3L loans with multi-role approval flows. Integrated OCR, CIBIL checks, and geo-verification to cut verification time by 70%.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-xs font-mono px-2 py-1 rounded bg-white/10 text-white">API Integration</span>
+                            <span class="text-xs font-mono px-2 py-1 rounded bg-white/10 text-white">Geo-Loc</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-secondary-glow hover:text-white transition-colors">
+                            View Details <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="vanilla-tilt group relative rounded-2xl overflow-hidden glass hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500" data-aos="fade-up" data-aos-delay="300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent opacity-80 z-10"></div>
+                    <div class="h-56 bg-gradient-to-br from-orange-900 to-red-900 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+                        <i class="fas fa-cubes text-7xl text-white/50 group-hover:scale-110 group-hover:text-white transition-all duration-500 z-0"></i>
+                    </div>
+                    
+                    <div class="relative z-20 p-6 -mt-12">
+                        <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center shadow-lg mb-4 text-white text-xl">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Lifecycle Modules</h3>
+                        <p class="text-gray-300 text-sm mb-4 line-clamp-3">
+                            End-to-end modules for purchase, installation, and logistics. Improved operational flow efficiency by 55% and reduced vendor reconciliation.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-xs font-mono px-2 py-1 rounded bg-white/10 text-white">Inventory</span>
+                            <span class="text-xs font-mono px-2 py-1 rounded bg-white/10 text-white">Logic</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-red-400 hover:text-white transition-colors">
+                            View Details <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Education (Timeline) -->
+    <section id="experience" class="py-24 bg-gray-50 dark:bg-dark-bg/50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading text-4xl font-bold text-gray-900 dark:text-white mb-4">Journey</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary-DEFAULT to-secondary-DEFAULT mx-auto rounded-full"></div>
+            </div>
+
+            <div class="relative space-y-12">
+                <!-- Timeline Line -->
+                <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-300 dark:bg-gray-700 transform md:-translate-x-1/2"></div>
+
+                <!-- Exp Item 1 -->
+                <div class="relative md:flex items-center justify-between" data-aos="fade-up">
+                    <div class="ml-12 md:ml-0 md:w-[45%] md:text-right p-6 glass rounded-xl border-r-4 border-primary-DEFAULT shadow-lg">
+                        <span class="text-xs font-bold tracking-widest text-primary-DEFAULT uppercase mb-1 block">Feb 2024 - Present</span>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Software Engineer</h3>
+                        <p class="text-sm font-medium text-gray-500 mb-4">Plugseal Innovation Service Pvt Ltd</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            Built LOS backend handling 10,000 daily apps. Integrated 15+ APIs (KYC, PhonePe). Optimized DB for 45% faster dashboards.
+                        </p>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-primary-DEFAULT border-4 border-white dark:border-dark-bg z-10 shadow-[0_0_15px_#3b82f6]"></div>
+                    <div class="hidden md:block md:w-[45%]"></div>
+                </div>
+
+                <!-- Exp Item 2 -->
+                <div class="relative md:flex items-center justify-between" data-aos="fade-up">
+                    <div class="hidden md:block md:w-[45%]"></div>
+                    <!-- Dot -->
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-secondary-DEFAULT border-4 border-white dark:border-dark-bg z-10 shadow-[0_0_15px_#8b5cf6]"></div>
+                    
+                    <div class="ml-12 md:ml-0 md:w-[45%] p-6 glass rounded-xl border-l-4 border-secondary-DEFAULT shadow-lg">
+                        <span class="text-xs font-bold tracking-widest text-secondary-DEFAULT uppercase mb-1 block">Apr 2023 - Jan 2024</span>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Jr. Software Engineer</h3>
+                        <p class="text-sm font-medium text-gray-500 mb-4">Mentation Tech</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            Developed product lifecycle modules. Increased tracking accuracy by 45%. Automated 80% of payout tasks.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Education Item -->
+                 <div class="relative md:flex items-center justify-between" data-aos="fade-up">
+                    <div class="ml-12 md:ml-0 md:w-[45%] md:text-right p-6 glass rounded-xl border-r-4 border-green-500 shadow-lg">
+                        <span class="text-xs font-bold tracking-widest text-green-500 uppercase mb-1 block">2021 - 2024</span>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Bachelor of Computer Applications</h3>
+                        <p class="text-sm font-medium text-gray-500">Swami Vivekananda University</p>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-green-500 border-4 border-white dark:border-dark-bg z-10 shadow-[0_0_15px_rgba(34,197,94,0.8)]"></div>
+                    <div class="hidden md:block md:w-[45%]"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements (Grid) -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-heading text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white" data-aos="fade-up">Achievements & Highlights</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Achievement 1 -->
+                <div class="glass p-6 rounded-2xl text-center group hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-16 h-16 mx-auto bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-trophy text-2xl text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white counter" data-target="1000">1000+</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">DSA Problems Solved</p>
+                </div>
+
+                <!-- Achievement 2 -->
+                <div class="glass p-6 rounded-2xl text-center group hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 mx-auto bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-certificate text-2xl text-purple-600 dark:text-purple-400"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white">3</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">HackerRank Certs</p>
+                </div>
+
+                <!-- Achievement 3 -->
+                <div class="glass p-6 rounded-2xl text-center group hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 mx-auto bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-chart-line text-2xl text-green-600 dark:text-green-400"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white">99%</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Payment Success Rate</p>
+                </div>
+                
+                 <!-- Achievement 4 -->
+                 <div class="glass p-6 rounded-2xl text-center group hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 mx-auto bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-rocket text-2xl text-orange-600 dark:text-orange-400"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white">2</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Live Fintech Backends</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative overflow-hidden bg-white dark:bg-black">
+        <div class="absolute inset-0 z-0">
+             <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-primary-DEFAULT/10 to-transparent"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="font-heading text-4xl font-bold text-gray-900 dark:text-white mb-4">Let's Collaborate</h2>
+                <p class="text-gray-600 dark:text-gray-400">Ready to build the next big thing in Fintech?</p>
+            </div>
+
+            <div class="glass rounded-3xl shadow-2xl overflow-hidden md:flex" data-aos="zoom-in">
+                <!-- Info Side -->
+                <div class="bg-gradient-to-br from-primary-DEFAULT to-blue-700 p-10 md:w-2/5 text-white flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
+                    
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold mb-8">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <span class="text-sm md:text-base">vinay3000111@gmail.com</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <span class="text-sm md:text-base">+91 7390016161</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <span class="text-sm md:text-base">Mirzapur, UP, India</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative z-10 mt-12">
+                        <button onclick="downloadResume()" class="w-full py-3 bg-white text-primary-DEFAULT font-bold rounded-lg shadow-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2">
+                            Download Resume <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Form Side -->
+                <div class="p-10 md:w-3/5 bg-white dark:bg-dark-card">
+                    <form id="contactForm" class="space-y-6">
+                        <div class="group">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
+                            <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent outline-none transition-all dark:text-white" placeholder="John Doe">
+                        </div>
+                        <div class="group">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
+                            <input type="email" id="email" required class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent outline-none transition-all dark:text-white" placeholder="john@example.com">
+                        </div>
+                        <div class="group">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                            <textarea id="message" rows="4" required class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-DEFAULT focus:border-transparent outline-none transition-all dark:text-white" placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold rounded-lg hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
+                            Send Message <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-bg text-white py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                 <div class="w-10 h-10 bg-gradient-to-br from-primary-DEFAULT to-secondary-DEFAULT rounded-lg flex items-center justify-center font-bold text-xl">VK</div>
+                 <span class="font-heading font-bold text-lg">Vinay Kumar</span>
+            </div>
+            
+            <p class="text-gray-400 text-sm">© 2025 All Rights Reserved. Crafted with <i class="fas fa-heart text-red-500"></i> & Vanilla JS.</p>
+            
+            <div class="flex gap-6">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-github text-xl"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fas fa-envelope text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <script>
+        // --- 1. Initialization (AOS & Tilt) ---
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+            easing: 'ease-out-cubic'
+        });
+
+        VanillaTilt.init(document.querySelectorAll(".vanilla-tilt"), {
+            max: 10,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.3,
+        });
+
+        // --- 2. Theme Toggle ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        
+        function updateTheme(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = !document.documentElement.classList.contains('dark');
+            updateTheme(isDark);
+        }
+
+        // Init theme
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            updateTheme(true);
+        } else {
+            updateTheme(false);
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
+
+        // --- 3. Custom Cursor Logic ---
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Dot follows instantly
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Outline follows with slight delay (animation)
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Interactive Cursor States
+        document.querySelectorAll('a, button, input, textarea').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.style.width = '60px';
+                cursorOutline.style.height = '60px';
+                cursorOutline.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.style.width = '40px';
+                cursorOutline.style.height = '40px';
+                cursorOutline.style.backgroundColor = 'transparent';
+            });
+        });
+
+        // --- 4. Mobile Menu ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function openMenu() {
+            mobileMenu.classList.remove('translate-x-full');
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.add('translate-x-full');
+        }
+
+        mobileMenuBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+
+        // --- 5. Particle Animation (Vanilla JS Canvas) ---
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let particlesArray;
+        
+        // Resize canvas
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                // Color based on theme (handled in draw)
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                const isDark = document.documentElement.classList.contains('dark');
+                ctx.fillStyle = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            const numberOfParticles = (canvas.width * canvas.height) / 15000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        });
+
+        initParticles();
+        animateParticles();
+
+        // --- 6. Resume Download Mock ---
+        function downloadResume() {
+            const btn = event.currentTarget;
+            
+            // Micro-interaction
+            btn.classList.add('scale-95');
+            setTimeout(() => btn.classList.remove('scale-95'), 150);
+
+            const confirmDownload = confirm("Start download for 'Vinay_Kumar_Resume_2025.pdf'?");
+            if(confirmDownload) {
+                // Logic to download
+                console.log("Downloading...");
+            }
+        }
+
+        // --- 7. Navbar Scroll Effect ---
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.add('bg-white/80', 'dark:bg-dark-bg/80'); // Stronger background
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.remove('bg-white/80', 'dark:bg-dark-bg/80');
+            }
+        });
+        
+        // --- 8. Contact Form Handling ---
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Simulate sending
+            const btn = contactForm.querySelector('button');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+                btn.classList.add('bg-green-600', 'hover:bg-green-600');
+                contactForm.reset();
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    btn.classList.remove('bg-green-600', 'hover:bg-green-600');
+                }, 3000);
+            }, 1500);
+        });
+
+    </script>
+</body>
+</html>
