@@ -1,786 +1,1167 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vinay Kumar's Portfolio</title>
-    <link
-      rel="shortcut icon"
-      type="image/png"
-      href="./resources/my_profile.png"
-    />
-    <!---- Box Icons ---->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
-      integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <!--- Github calender --->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
-    />
-    <!--- Bootstrap CSS --->
-    <link rel="stylesheet" href="./styles/bootstrap.min.css" />
-    <link rel="stylesheet" href="styles/index.css" />
-  </head>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinay Kumar | Backend Engineer</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Animation Libraries -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            accent: '#00f2ff', // Neon Cyan
+                            secondary: '#7000ff', // Neon Purple
+                            dark: '#050505',
+                            card: 'rgba(20, 20, 20, 0.6)',
+                            border: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'spin-slow': 'spin 15s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
-  <body>
-    <!------Preloader Start--------->
-    <div class="preloader">
-      <div></div>
-    </div>
-    <!------Preloader End--------->
+    <style>
+        /* Custom Styles & Utilities */
+        :root {
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(17, 25, 40, 0.75);
+            --neon-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+        }
 
-    <!----Navbar Start---->
-    <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container">
-        <!-- Brand -->
-        <a class="navbar-brand" href="/">
-          <div class="cube">
-            <div class="top"></div>
-            <div>
-              <span style="--i: 0"></span>
-              <span style="--i: 1"></span>
-              <span style="--i: 2"></span>
-              <span style="--i: 3"></span>
-            </div>
-          </div>
-        </a>
+        body {
+            background-color: #050505;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
 
-        <!-- Toggler/collapsibe Button -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#collapsibleNavbar"
-        >
-          <i class="bx bx-menu"></i>
-        </button>
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00f2ff; }
 
-        <!-- Navbar links -->
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link active" data-scroll-nav="0" href="#"
-                ><i class="bx bx-home-alt"></i> Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-scroll-nav="1" href="#"
-                ><i class="bx bx-user"></i> About Me</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-scroll-nav="2" href="#"
-                ><i class="bx bx-wrench"></i> Skills</a
-              >
-            </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" data-scroll-nav="3" href="#"
-                ><i class="bx bx-education-alt"></i> Education</a
-              > -->
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-scroll-nav="4" href="#"
-                ><i class="bx bx-carousel"></i> Projects</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                href="./resources/Vinay-Kumar-Resume.pdf"
-                download=""
-                target="_blank"
-                class="btn btn-1"
-                onclick="window.open('https://drive.google.com/file/d/1kD6xZMRgwfWEgdotlP9yO2qcagqpRrTZ/view?usp=sharing', '_blank')"
-                >Resume</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!----Navbar End------>
+        /* Glassmorphism */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
 
-    <!----Home Section Start ----->
-    <section
-      class="home d-flex align-items-center"
-      id="home"
-      data-scroll-index="0"
-    >
-      <div class="container">
-        <p>Hi, I'm Vinay Kumar a</p>
-        <h1>Backend Developer</h1>
-        <div class="home-btn">
-          <a
-            href="./resources/Vinay-Kumar-Resume.pdf"
-            download=""
-            target="_blank"
-            class="btn btn-1"
-            onclick="window.open('https://drive.google.com/file/d/1kD6xZMRgwfWEgdotlP9yO2qcagqpRrTZ/view?usp=sharing', '_blank')"
-            >Resume</a
-          >
-        </div>
-      </div>
-      <svg
-        preserveAspectRatio="none"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 320"
-      >
-        <path
-          class="path"
-          fill="#0099ff"
-          fill-opacity="1"
-          d="M0,128L80,117.3C160,107,320,85,480,96C640,107,800,149,960,160C1120,171,1280,149,1360,138.7L1440,128L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
-        ></path>
-      </svg>
-    </section>
-    <!----Home Section End ----->
+        .light-mode .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0,0,0,0.05);
+            color: #1a202c;
+        }
 
-    <!----About Me Section Start----->
-    <section
-      class="about-me section-padding"
-      id="about_me"
-      data-scroll-index="1"
-    >
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="section-title">
-              <h2>About <span>Me</span></h2>
-            </div>
-          </div>
-        </div>
-        <div class="row-2">
-          <img
-            src="./resources/my-profile.jpeg"
-            alt="Profile"
-            title="My profile photo"
-            class="profile"
-          />
-          <div class="about-text">
-            <h2>I'm Vinay Kumar</h2>
-            <div class="wrapper">
-              <h1 class="static-text">Skilled in</h1>
-              <ul class="skills">
-                <li><span>Backend development</span></li>
-                <li><span>Java</span></li>
-                <li><span>Spring Boot</span></li>
-                <li><span>Hibernate</span></li>
-                <li><span>MySQL</span></li>
-                <li><span>Spring-Security</span></li>
-                <li><span>HTML</span></li>
-                <li><span>CSS</span></li>
-                <li><span>JavaScript</span></li>
-                <li><span>TypeScript</span></li>
-                <li><span>Node js</span></li>
-                <li><span>Express js</span></li>
-                <li><span>Angular js</span></li>
-              </ul>
-            </div>
+        /* Neon Glows */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+        }
+        .neon-border {
+            box-shadow: 0 0 5px rgba(0, 242, 255, 0.2), inset 0 0 5px rgba(0, 242, 255, 0.1);
+            border: 1px solid rgba(0, 242, 255, 0.3);
+        }
 
-            <p>
-              Proactive computer science graduate with a strong interest in
-              software engineering. Skilled in Java, MySQL, Hibernate, Spring Boot,
-              Node.js, and AngularJS. Demonstrates excellent analytical abilities,
-              effective communication skills, and the ability to work well within a
-              team. Committed to delivering high-quality software solutions.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!----About Me Section End----->
+        /* Modal Transitions */
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            transform: scale(0.95) translateY(20px);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .modal.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
 
-    <!----Skills Section Start----->
-    <section class="skills section-padding" id="skills" data-scroll-index="2">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="section-title">
-              <h2>Technical <span>Skills</span></h2>
-              <h3 align="center">Tools and Technologies</h3>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="tools_and_tech">
-            <a href="https://www.java.com" target="_blank" title="Java">
-              <img src="resources/icons/java.svg" alt="java" />
-            </a>
-            <a href="https://www.mysql.com/" target="_blank" title="MySQL">
-              <img src="resources/icons/mysql.svg" alt="mysql" />
-            </a>
-            <a href="https://hibernate.org/" target="_blank" title="Hibernate">
-              <img src="resources/icons/hibernate.svg" alt="Hibernate" />
-            </a>
-            <a href="https://maven.apache.org/" target="_blank" title="Maven">
-              <img src="resources/icons/maven.png" alt="Maven" />
-            </a>
-            <a href="https://spring.io/" target="_blank" title="Spring-Boot">
-              <img src="resources/icons/spring.svg" alt="spring" />
-            </a>
-           
-            
+        /* Skill Bars */
+        .skill-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .skill-progress {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #00f2ff, #7000ff);
+            width: 0; /* Animated by JS */
+            transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
 
-            <a
-              href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-              target="_blank"
-              title="JavaScript"
-            >
-              <img src="resources/icons/javascript.svg" alt="javascript" />
-            </a>
-            <a href="https://www.w3.org/html/" target="_blank" title="HTML5">
-              <img src="resources/icons/html5.svg" alt="html5" />
-            </a>
+        /* Grid Background */
+        .bg-grid {
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+        .light-mode .bg-grid {
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+        }
+        
+        /* Form Validation Styles */
+        .input-error {
+            border-color: #ef4444 !important; /* Red-500 */
+            box-shadow: 0 0 5px rgba(239, 68, 68, 0.5);
+        }
+        .error-message {
+            color: #ef4444;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        .input-group.error .error-message {
+            display: block;
+        }
+    </style>
+</head>
+<body class="selection:bg-brand-accent selection:text-black">
 
-            <a
-              href="https://www.w3schools.com/css/"
-              target="_blank"
-              title="CSS"
-            >
-              <img src="resources/icons/css3.svg" alt="css" />
-            </a>
+    <!-- Background Elements -->
+    <div class="fixed inset-0 z-[-1] bg-grid pointer-events-none"></div>
+    <div class="fixed top-0 left-0 w-96 h-96 bg-brand-secondary/20 rounded-full blur-[128px] animate-blob filter pointer-events-none"></div>
+    <div class="fixed bottom-0 right-0 w-96 h-96 bg-brand-accent/20 rounded-full blur-[128px] animate-blob animation-delay-2000 filter pointer-events-none"></div>
 
-
-            <a
-              href="https://www.nodejs.org/"
-              target="_blank"
-              title="Node js"
-            >
-              <img src="resources/icons/nodejs.png" alt="node js" />
-            </a>
-
-            <a
-              href="https://expressjs.com/"
-              target="_blank"
-              title="Express js"
-            >
-              <img src="resources/icons/express.png" alt="express js" />
-            </a>
-
-            <a
-              href="https://angularjs.org/"
-              target="_blank"
-              title="Angular js"
-            >
-              <img src="resources/icons/angular js.png" alt="Angular" />
-            </a>
-
-            <a
-              href="https://www.jwt.io/"
-              target="_blank"
-              title="JWT"
-            >
-              <img src="resources/icons/jwt.png" alt="jwt" />
-            </a>
-
-            <a href="https://git-scm.com/" target="_blank" title="Git">
-              <img src="resources/icons/git.svg" alt="git" />
-            </a>
-            
-            <a href="https://github.com" target="_blank" title="Github">
-              <img src="resources/icons/githubLogo.png" alt="Github" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!----Skills Section End----->
-
-    <!----Github Calender & Statistics Start----->
-    <section class="github-calender section-padding">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="section-title">
-              <h2>Github <span>Calender</span></h2>
-              <!-- <h3 align="center">Tools and Technologies</h3> -->
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="calendar" id="github-calender">
-            Loading Github Calender...
-          </div>
-        </div>
-      </div>
-    </section>
-    <!----Github Calender & Statistics End----->
-
-
-
-    <!-------Projects Section Start------>
-    <section
-      class="projects section-padding"
-      id="projects"
-      data-scroll-index="4"
-    >
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="section-title">
-              <h2>Featured <span>Projects</span></h2>
-            </div>
-          </div>
-        </div>
-        <div class="projects-container">
-          <div class="project-item">
-            <div class="image-section">
-              <img src="./resources/blog.png" alt="My-Blogs" />
-            </div>
-            <div class="project-info">
-              <h1>Blog Management Application System</h1>
-              <div class="links">
-                <a
-                  target="_blank"
-                  href="https://github.com/VINAYKUMARKUNDER/Blog-Management-Application-System"
-                >
-                  <i class="bx bxl-github"></i> Github repo
-                </a>
-                <a
-                  target="_blank"
-                  href="https://drive.google.com/file/d/12o3AhXYJcyIwr_JHV3hFjD4EqJD8Q8x7/view"
-                >
-                  <i class="bx bx-play-circle"></i> Presentation Video
-                </a>
-              </div>
-              <p>
-                Created a user-friendly blog management system with robust functionalities,
-including content creation, editing, categorization, and search capabilities.
-Implemented modern technologies and coding best practices to ensure optimal
-performance.
-              </p>
-              <div class="tech-stacks">
-                <h4>Tech Stacks</h4>
-                <div>
-                  <a href="https://www.java.com/" target="_blank" title="Java">
-                    <img src="resources/icons/java.svg" alt="java" />
-                  </a>
-                  <a
-                    href="https://www.mysql.com/"
-                    target="_blank"
-                    title="MySQL"
-                  >
-                    <img src="resources/icons/mysql.svg" alt="mysql" />
-                  </a>
-
-                  <a
-                    href="https://hibernate.org/"
-                    target="_blank"
-                    title="Hibernate"
-                  >
-                    <img src="resources/icons/hibernate.svg" alt="hibernate" />
-                  </a>
-
-                  <a
-                    href="https://spring.io/tools"
-                    target="_blank"
-                    title="Spring-boot"
-                  >
-                    <img src="resources/icons/spring.svg" alt="spring" />
-                  </a>
-
-                  <a
-                    href="https://spring.io/tools"
-                    target="_blank"
-                    title="Spring-Security"
-                  >
-                    <img
-                      src="resources/icons/spring-security.png"
-                      alt="spring-security"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-item">
-            <div class="image-section">
-              <img src="./resources/ezWallet.png" alt="StartWar screenshot" />
-            </div>
-            <div class="project-info">
-              <h1>Payment wallet Application</h1>
-              <div class="links">
-                <a
-                  target="_blank"
-                  href="https://github.com/Bhushan8554/resilient-slope-3319"
-                >
-                  <i class="bx bxl-github"></i> Github repo
-                </a>
-                <a
-                  target="_blank"
-                  href="https://drive.google.com/file/d/1___IDbTCEsRO7NcitLSdLxkYb6-U2uYV/view?usp=share_link"
-                >
-                  <i class="bx bx-play-circle"></i> Presentation Video
-                </a>
-              </div>
-              <p>
-                Collaborated with a dedicated team of 5 members to create a robust payment
-application system. Developed functionalities for transaction recording,
-invoice generation, and user management. Showcased effective teamwork for
-delivering a high-performing payment solution.
-              </p>
-              <div class="tech-stacks">
-                <h4>Tech Stacks</h4>
-                <div>
-                  <a href="https://www.java.com/" target="_blank" title="Java">
-                    <img src="resources/icons/java.svg" alt="java" />
-                  </a>
-                  <a
-                    href="https://www.mysql.com/"
-                    target="_blank"
-                    title="MySQL"
-                  >
-                    <img src="resources/icons/mysql.svg" alt="mysql" />
-                  </a>
-
-                  <a
-                    href="https://hibernate.org/"
-                    target="_blank"
-                    title="Hibernate"
-                  >
-                    <img src="resources/icons/hibernate.svg" alt="hibernate" />
-                  </a>
-
-                  <a
-                    href="https://spring.io/tools"
-                    target="_blank"
-                    title="Spring-boot"
-                  >
-                    <img src="resources/icons/spring.svg" alt="spring" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-item">
-            <div class="image-section">
-              <img src="./resources/meesho.png" alt="Meesho screenshot" />
-            </div>
-            <div class="project-info">
-              <h1>Meesho Clone</h1>
-              <div class="links">
-                <a
-                  target="_blank"
-                  href="https://github.com/VINAYKUMARKUNDER/Meesho.com-clone"
-                >
-                  <i class="bx bxl-github"></i> Github repo
-                </a>
-                <a
-                  target="_blank"
-                  href="https://636104807cc4811f7fbc1578--magnificent-puppy-387fd4.netlify.app/"
-                >
-                  <i class="bx bx-link-external"></i> Deployed link
-                </a>
-              </div>
-              <p>
-                Independently developed a comprehensive e-commerce platform inspired by Messho. Leveraged HTML, CSS, and JavaScript to create a visually appealing and user-friendly front-end. Implemented features such as intuitive navigation, dynamic product listings, seamless cart management, and secure payment integration. Ensured responsiveness and cross-browser compatibility for optimal user experience. Employed effective design principles to closely replicate the original Messho interface while incorporating unique enhancements. Successfully delivered a fully functional and aesthetically pleasing e-commerce platform that offers a delightful shopping experience to users.
-              </p>
-              <div class="tech-stacks">
-                <h4>Tech Stacks</h4>
-                <div>
-                  <a
-                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-                    target="_blank"
-                    title="JavaScript"
-                  >
-                    <img
-                      src="resources/icons/javascript.svg"
-                      alt="javascript"
-                    />
-                  </a>
-                  <a
-                    href="https://www.w3.org/html/"
-                    target="_blank"
-                    title="HTML5"
-                  >
-                    <img src="resources/icons/html5.svg" alt="html5" />
-                  </a>
-                  <a
-                    href="https://www.w3schools.com/css/"
-                    target="_blank"
-                    title="CSS3"
-                  >
-                    <img src="resources/icons/css3.svg" alt="css3" />
-                  </a>
-
-                  <a
-                    href="https://www.w3schools.com/css/"
-                    target="_blank"
-                    title="Github"
-                  >
-                    <img src="resources/icons/git.svg" alt="Github" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-item">
-            <div class="image-section">
-              <img
-                src="./resources/portfolio.png"
-                alt="Cronometer screenshot"
-              />
-            </div>
-            <div class="project-info">
-              <h1>Portfolio</h1>
-              <div class="links">
-                <a
-                  target="_blank"
-                  href="https://github.com/VINAYKUMARKUNDER/VINAYKUMARKUNDER.github.io"
-                >
-                  <i class="bx bxl-github"></i> Github repo
-                </a>
-                <a target="_blank" href="https://vinaykumarkunder.github.io/">
-                  <i class="bx bx-play-circle"></i> Deployed link
-                </a>
-              </div>
-              <p>
-                A portfolio is a systematic collection of student work that
-                represents student activities, accomplishments, and achievements
-                over a specific period of time in one or more areas of the
-                curriculum. There are two main types of portfolios: Showcase
-                Portfolios: Students select and submit their best work.
-              </p>
-              <div class="tech-stacks">
-                <h4>Tech Stacks</h4>
-                <div>
-                  <a
-                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-                    target="_blank"
-                    title="JavaScript"
-                  >
-                    <img
-                      src="resources/icons/javascript.svg"
-                      alt="javascript"
-                    />
-                  </a>
-                  <a
-                    href="https://www.w3.org/html/"
-                    target="_blank"
-                    title="HTML5"
-                  >
-                    <img src="resources/icons/html5.svg" alt="html5" />
-                  </a>
-                  <a
-                    href="https://www.w3schools.com/css/"
-                    target="_blank"
-                    title="CSS3"
-                  >
-                    <img src="resources/icons/css3.svg" alt="css3" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-------Projects Section End------>
-
-
-     
-
-    <!---------Contact Section Start--------->
-    <section class="contact section-padding" data-scroll-index="4">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="section-title">
-              <h2>get in <span>touch</span></h2>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-5">
-            <div class="contact-info">
-              <h3>For Any Queries and Support</h3>
-              <div class="resume-btn">
-                <a
-                  href="./resources/Vinay-Kumar-Resume.pdf"
-                  download=""
-                  target="_blank"
-                  class="btn btn-1"
-                  onclick="window.open('https://drive.google.com/file/d/1kD6xZMRgwfWEgdotlP9yO2qcagqpRrTZ/view?usp=sharing', '_blank')"
-                  >Resume</a
-                >
-              </div>
-              <div class="contact-info-item email">
-                <i class="bx bx-envelope"></i>
-                <h4>Write to me at</h4>
-                <p>
-                  <a href="mailto:vinay3000111@gmail.com" title="My email"
-                    >vinay3000111@gmail.com</a
-                  >
-                </p>
-              </div>
-              <div class="contact-info-item mobile">
-                <i class="bx bx-phone"></i>
-                <h4>Write to me at</h4>
-                <p><a title="My mobile">+91 7390016161</a></p>
-              </div>
-              <div class="contact-info-item">
-                <i class="bx bxl-github"></i>
-                <h4>Github profile</h4>
-                <p>
-                  <a
-                    target="_blank"
-                    href="https://github.com/VINAYKUMARKUNDER"
-                    title="My GitHub profile"
-                    >github.com/VINAYKUMARKUNDER</a
-                  >
-                </p>
-              </div>
-
-              <div class="contact-info-item linkedin">
-                <i class="bx bxl-linkedin"></i>
-                <h4>LinkedIn Profile</h4>
-                <p>
-                  <a
-                    target="_blank"
-                    href="https://www.linkedin.com/in/vinay-kumar-18b17125b/"
-                    title="LinkedIn profile"
-                    >linkedin.com/in/vinay-kumar</a
-                  >
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-8 col-md-7">
-            <!-- <div class="contact-form">
-              <form id="email_form">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <input
-                        id="name"
-                        type="text"
-                        name="name"
-                        placeholder="Your Name"
-                        class="form-control"
-                        required
-                      />
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 top-0 py-4" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-2xl px-6 py-3 flex justify-between items-center">
+                <!-- Dynamic Logo -->
+                <a href="#home" class="flex items-center gap-2 group">
+                    <div class="relative w-10 h-10 flex items-center justify-center bg-gradient-to-tr from-brand-secondary to-brand-accent rounded-lg transform group-hover:rotate-12 transition-transform">
+                        <span class="font-mono font-bold text-black text-xl">VK</span>
+                        <div class="absolute inset-0 bg-white opacity-20 group-hover:animate-ping rounded-lg"></div>
                     </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <input
-                        id="email"
-                        type="text"
-                        name="email"
-                        placeholder="Your Email"
-                        class="form-control"
-                        required
-                      />
-                    </div>
-                  </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium hover:text-brand-accent transition-colors">HOME</a>
+                    <a href="#about" class="text-sm font-medium hover:text-brand-accent transition-colors">ABOUT</a>
+                    <a href="#skills" class="text-sm font-medium hover:text-brand-accent transition-colors">SKILLS</a>
+                    <a href="#projects" class="text-sm font-medium hover:text-brand-accent transition-colors">PROJECTS</a>
+                    <a href="#contact" class="text-sm font-medium hover:text-brand-accent transition-colors">CONTACT</a>
                 </div>
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="form-group">
-                      <input
-                        id="subject"
-                        type="text"
-                        name="subject"
-                        placeholder="Subject (optional)"
-                        class="form-control"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="form-group">
-                      <textarea
-                        id="message"
-                        name="message"
-                        placeholder="Your Message (10-500 char)"
-                        class="form-control"
-                        required
-                      ></textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-12">
-                    <button id="submit" type="submit" class="btn btn-2">
-                      Send Message
+
+                <!-- Controls -->
+                <div class="flex items-center gap-4">
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition-colors">
+                        <i class="fas fa-sun text-yellow-400 hidden light-icon"></i>
+                        <i class="fas fa-moon text-brand-accent dark-icon"></i>
                     </button>
-                  </div>
+                    <a id="nav-resume-btn" href="#" target="_blank" class="hidden md:flex items-center gap-2 bg-white/10 hover:bg-brand-accent hover:text-black px-4 py-2 rounded-lg text-xs font-bold font-mono transition-all border border-brand-accent/30">
+                        <span>RESUME</span>
+                        <i class="fas fa-download"></i>
+                    </a>
+                    <!-- Mobile Menu Btn -->
+                    <button id="mobile-menu-btn" class="md:hidden text-2xl text-white">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
-              </form>
-            </div> -->
-            <img src="./resources/img.avif" alt="img">
-          </div>
+            </div>
         </div>
-      </div>
-    </section>
-    <!---------Contact Section End---------->
+    </nav>
 
-    <!--------Footer Section Start--------->
-    <footer class="footer">
-      <p class="copyright-text">
-        Copyright &copy; Designed and created by
-        <a href="https://github.com/VINAYKUMARKUNDER" target="_blank"
-          >Vinay Kumar</a
-        >
-      </p>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-black/95 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center space-y-8">
+        <button id="close-mobile-menu" class="absolute top-8 right-8 text-4xl text-gray-500 hover:text-white">&times;</button>
+        <a href="#home" class="text-2xl font-bold mobile-link">Home</a>
+        <a href="#about" class="text-2xl font-bold mobile-link">About</a>
+        <a href="#skills" class="text-2xl font-bold mobile-link">Skills</a>
+        <a href="#projects" class="text-2xl font-bold mobile-link">Projects</a>
+        <a href="#contact" class="text-2xl font-bold mobile-link">Contact</a>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINERS (Injected via JS) -->
+    
+    <!-- Hero Section -->
+    <header id="hero-section" class="min-h-screen flex items-center justify-center relative pt-20 px-4"></header>
+
+    <!-- About Section -->
+    <section id="about-section" class="py-24 px-4 max-w-7xl mx-auto"></section>
+
+    <!-- Skills Section -->
+    <section id="skills-section" class="py-24 px-4 max-w-7xl mx-auto"></section>
+
+    <!-- Projects Section -->
+    <section id="projects-section" class="py-24 px-4 max-w-7xl mx-auto"></section>
+
+    <!-- Experience & Education -->
+    <section id="timeline-section" class="py-24 px-4 max-w-7xl mx-auto"></section>
+
+    <!-- Achievements -->
+    <section id="achievements-section" class="py-24 px-4 max-w-7xl mx-auto"></section>
+
+    <!-- Contact Section -->
+    <section id="contact-section" class="py-24 px-4 relative overflow-hidden"></section>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 bg-black py-12 text-center relative z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <span class="font-mono text-brand-accent">&lt;/&gt;</span>
+                <span class="font-bold text-gray-400">Built with Vanilla JS</span>
+            </div>
+            <p class="text-gray-600 text-sm">&copy; 2025 Vinay Kumar. All System Rights Reserved.</p>
+        </div>
     </footer>
-    <!--------Footer Section End---------->
 
-    <!--------Toggle Theme Start - light & dark mode----------->
-    <div class="toggle-theme" title="Change theme">
-      <i class="bx"></i>
-    </div>
-    <!--------Toggle Theme End------------>
-
-    <!--------Popup Message Modal Start------->
-    <div
-      class="modal fade"
-      id="popupModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="popupModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-body">
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal fixed inset-0 z-[60] flex items-center justify-center px-4 backdrop-blur-sm bg-black/60">
+        <div class="modal-content glass-panel w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl relative">
+            <button id="close-modal" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-red-500/20 text-white hover:text-red-500 flex items-center justify-center transition-colors">
+                <i class="fas fa-times"></i>
             </button>
-            <span id="popup-message"></span>
-          </div>
+            <div id="modal-body" class="p-8 md:p-12">
+                <!-- Content Injected Here -->
+            </div>
         </div>
-      </div>
     </div>
-    <!-------Popup Message Modal End------->
 
-    <!---Jquery js---->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
-      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <!---bootstrap js---->
-    <script src="./scripts/bootstrap.min.js"></script>
-    <!---ScrollIt js---->
-    <script src="scripts/scrollIt.min.js"></script>
-    <!------ Github Calender js ------>
-    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
-    <!-------index js------>
-    <script src="scripts/index.js"></script>
-  </body>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        // ==========================================
+        // 1. DATA SOURCE (RICH CONTEXT FROM RESUME)
+        // ==========================================
+        const portfolioData = {
+            personal: {
+                name: "Vinay Kumar",
+                role: "Backend Engineer",
+                tagline: "Engineering scalable fintech ecosystems & high-performance APIs.",
+                email: "vinay3000111@gmail.com",
+                phone: "+91 7390016161",
+                location: "Mirzapur, UP, India",
+                linkedin: "https://linkedin.com/in/vinay-kumar",
+                github: "https://github.com",
+                photoId: "14tFK5DwTXA8fyPogg2loFG4S_ej65rL2",
+                resumeUrl: "https://drive.google.com/file/d/10A2TpsngF4FWc_tYFSxAJevVdJJVIzqm/view?usp=sharing"
+            },
+            about: {
+                summary: "Backend-focused Software Engineer with deep expertise in Node.js, Springboot, and PostgreSQL. Currently powering digital loan workflows handling 7,000-10,000 applications daily at Plugseal. I specialize in building mission-critical APIs, optimizing database performance for real-time dashboards, and designing secure, multi-payment gateway architectures.",
+                stats: [
+                    { label: "DSA Solved", value: "1000+" },
+                    { label: "Daily Transactions", value: "10k+" },
+                    { label: "APIs Integrated", value: "15+" },
+                    { label: "Live Backends", value: "2" }
+                ]
+            },
+            skills: [
+                {
+                    category: "Backend Engineering",
+                    items: [
+                        { name: "Node.js & Express.js", level: 95 },
+                        { name: "NestJS & Fastify", level: 85 },
+                        { name: "Java & Springboot", level: 80 },
+                        { name: "ORM (Sequelize/Prisma)", level: 90 }
+                    ]
+                },
+                {
+                    category: "Data & Architecture",
+                    items: [
+                        { name: "PostgreSQL (Indexing/Joins)", level: 92 },
+                        { name: "MySQL & MongoDB", level: 88 },
+                        { name: "Microservices & Queues", level: 85 },
+                        { name: "Caching (Redis)", level: 85 }
+                    ]
+                },
+                {
+                    category: "API & Security",
+                    items: [
+                        { name: "RESTful APIs & GraphQL", level: 90 },
+                        { name: "WebSockets & Webhooks", level: 85 },
+                        { name: "Auth (JWT/Passport/Bcrypt)", level: 90 },
+                        { name: "Swagger Documentation", level: 85 }
+                    ]
+                },
+                {
+                    category: "Frontend & Tools",
+                    items: [
+                        { name: "React.js & Next.js", level: 75 },
+                        { name: "Docker & CI/CD", level: 80 },
+                        { name: "Git & Postman", level: 90 },
+                        { name: "Firebase", level: 70 }
+                    ]
+                }
+            ],
+            systemModules: [
+                { name: "Identity & KYC Svc", icon: "fas fa-id-card", desc: "CKYC, DigiLocker, OCR", status: "active" },
+                { name: "Payment Engine", icon: "fas fa-money-check-alt", desc: "4 Gateways, NACH, UPI", status: "active" },
+                { name: "Legal & Agreements", icon: "fas fa-file-signature", desc: "eSign Integration", status: "active" },
+                { name: "Credit Analysis", icon: "fas fa-chart-line", desc: "Bureau Data & BRE", status: "active" },
+                { name: "Communication Hub", icon: "fas fa-comments", desc: "SMS, Email, Notifs", status: "active" },
+                { name: "CMS Integration", icon: "fas fa-layer-group", desc: "Strapi Headless CMS", status: "active" },
+                { name: "Transaction Ledger", icon: "fas fa-exchange-alt", desc: "Core Logic", status: "active" }
+            ],
+            projects: [
+                {
+                    id: 1,
+                    title: "Loan Origination System (LOS)",
+                    shortDescription: "Fintech backend handling 7,000-10,000 daily loan applications with 70% efficiency boost.",
+                    techStack: ["Node.js", "PostgreSQL", "Redis", "Microservices"],
+                    github: "#",
+                    detailedDescription: "Designed and scaled an end-to-end Loan Origination System (LOS) that processes high-volume loan applications. The system covers the entire lifecycle: Onboarding, KYC, Underwriting, Sanction, Disbursement, and Collections.",
+                    architecture: "Modular workflow architecture separating KYC verification, credit underwriting, and repayment scheduling. Utilized optimized PostgreSQL models to power real-time dashboards for credit teams.",
+                    challenges: "Handling concurrent applications during peak hours and ensuring data consistency across multiple stages. Implemented robust error handling and retry logic.",
+                    results: "Boosted processing efficiency by 70%, reduced manual effort by 55%, and improved dashboard load times by 45%."
+                },
+                {
+                    id: 2,
+                    title: "Secure Multi-PG Payment Hub",
+                    shortDescription: "Integrated 4 Payment Gateways and 10+ financial APIs (NACH, UPI, eSign).",
+                    techStack: ["NestJS", "Webhooks", "REST", "Security"],
+                    github: "#",
+                    detailedDescription: "A centralized payment processing hub that routes transactions through 4 implemented gateways (PhonePe, Enkash, AU, Razorpay). Also manages unified flows for Mandates (NACH/UPI) and Agreements.",
+                    architecture: "Implemented secure webhooks for asynchronous transaction updates. Used tokenization for sensitive data and exponential backoff strategies for API failures.",
+                    challenges: "Managing downtime from third-party providers and ensuring 100% transaction integrity across different gateway protocols.",
+                    results: "Improved overall payment success rate by 99% and system reliability by 90%."
+                },
+                {
+                    id: 3,
+                    title: "Micro-Finance & Verification App",
+                    shortDescription: "Enabled 3L loans with multi-role approval and OCR-based KYC verification.",
+                    techStack: ["Express.js", "OCR", "Geo-Location", "AWS S3"],
+                    github: "#",
+                    detailedDescription: "Spearheaded the backend for a micro-finance application supporting multi-level approvals (RO -> BM -> BCM). Features include OCR-based KYC extraction, CIBIL checks, and geo-tagged media uploads.",
+                    architecture: "Role-Based Access Control (RBAC) for approval flows. Integration with external OCR and CIBIL APIs.",
+                    challenges: "Field verification latency and manual data entry errors.",
+                    results: "Cut field verification time by 70% and streamlined the approval process."
+                },
+                {
+                    id: 4,
+                    title: "Product Lifecycle Management",
+                    shortDescription: "Operational workflow modules for purchase, installation, and service logistics.",
+                    techStack: ["Node.js", "MongoDB", "Inventory API"],
+                    github: "#",
+                    detailedDescription: "Developed modules to track products from purchase to installation. Implemented real-time inventory and stock-movement APIs.",
+                    architecture: "Event-driven updates for inventory status changes. Dynamic calculation logic for vendor remuneration.",
+                    challenges: "Data mismatches between purchase orders and stock.",
+                    results: "Increased tracking accuracy by 45%, reduced vendor reconciliation time by 30%, and automated 80% of payout tasks."
+                }
+            ],
+            experience: [
+                {
+                    role: "Software Engineer",
+                    company: "Plugseal Innovation Service Pvt Ltd",
+                    location: "Bangalore, India",
+                    period: "Feb 2024 - Present",
+                    desc: [
+                        "Built scalable LOS backend handling 10,000 daily applications.",
+                        "Integrated 15+ mission-critical APIs (KYC, eSign, CIBIL, GST).",
+                        "Implemented secure flows for PhonePe, Razorpay, Enkash, AU.",
+                        "Optimized PostgreSQL joins, improving dashboard speeds by 45%.",
+                        "Automated loan document generation, cutting ops effort by 80%."
+                    ]
+                },
+                {
+                    role: "Jr. Software Engineer",
+                    company: "Mentation Tech",
+                    location: "Mumbai, India",
+                    period: "Apr 2023 - Jan 2024",
+                    desc: [
+                        "Developed end-to-end product lifecycle modules (Purchase to Service).",
+                        "Improved operational flow efficiency by 55%.",
+                        "Implemented stock-movement APIs increasing accuracy by 45%.",
+                        "Automated 80% of manual payout-related tasks for vendors."
+                    ]
+                }
+            ],
+            education: [
+                {
+                    degree: "Bachelor of Computer Applications (BCA)",
+                    school: "Swami Vivekananda University",
+                    year: "2021 - 2024"
+                },
+                {
+                    degree: "Full Stack Development Program",
+                    school: "Masai School",
+                    year: "2022 - 2023"
+                },
+                {
+                    degree: "Diploma of Computer Application",
+                    school: "Realtec Computer",
+                    year: "2019 - 2021"
+                }
+            ],
+            achievements: [
+                { title: "HackerRank Gold", desc: "Earned 3 certifications in Java, Problem Solving, and SQL." },
+                { title: "1000+ DSA Solved", desc: "Strengthened algorithmic thinking across OJ platforms." },
+                { title: "Fintech Success", desc: "Delivered 2 live backends powering 100% digital workflows." },
+                { title: "Calc Reliability", desc: "Built EMI & foreclosure calculators with 98% accuracy." }
+            ],
+            contect_email_credentials: {
+                public_key: "jWSOFmBKl650xTlLn",
+                service_id: "service_k7e5i8c",
+                template_id: "template_le6rvlg"
+            }
+        };
+
+
+
+        // ==========================================
+        // 2. HELPER FUNCTIONS
+        // ==========================================
+        
+        function getDriveImage(id) {
+            return `https://drive.google.com/uc?export=view&id=${id}`;
+        }
+        
+        const fallbackImage = "https://api.dicebear.com/7.x/avataaars/svg?seed=Vinay&backgroundColor=00f2ff";
+
+        // ==========================================
+        // 3. RENDER FUNCTIONS
+        // ==========================================
+
+        function renderHero() {
+            const container = document.getElementById('hero-section');
+            const { name, role, tagline, photoId, resumeUrl } = portfolioData.personal;
+
+            container.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-7xl">
+                    <div class="order-2 lg:order-1" data-aos="fade-right">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/50 text-brand-accent text-xs font-mono font-bold tracking-wider">
+                                <i class="fas fa-terminal mr-2"></i>BACKEND_DEV_MODE: ON
+                            </span>
+                            <span class="h-px w-12 bg-brand-accent/50"></span>
+                        </div>
+                        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                            Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-secondary">${name}</span>
+                        </h1>
+                        <h2 class="text-2xl md:text-3xl text-gray-400 font-mono mb-6"><span class="text-brand-accent">></span> ${role}</h2>
+                        <p class="text-lg text-gray-300 mb-10 max-w-xl leading-relaxed border-l-2 border-brand-secondary pl-6">
+                            ${tagline}
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#projects" class="px-8 py-4 bg-brand-accent text-black font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,242,255,0.4)] transition-all transform hover:-translate-y-1">
+                                VIEW ARCHITECTURE
+                            </a>
+                            <a href="${resumeUrl}" target="_blank" class="px-8 py-4 glass-panel text-white font-bold rounded-lg border border-white/10 hover:border-brand-accent/50 hover:text-brand-accent transition-all flex items-center gap-2 group">
+                                <span>DOWNLOAD CV</span>
+                                <i class="fas fa-download group-hover:translate-y-1 transition-transform"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="mt-12 flex gap-6 text-2xl text-gray-500">
+                            <a href="${portfolioData.personal.linkedin}" class="hover:text-brand-accent transition-colors hover:scale-110 transform"><i class="fab fa-linkedin"></i></a>
+                            <a href="${portfolioData.personal.github}" class="hover:text-white transition-colors hover:scale-110 transform"><i class="fab fa-github"></i></a>
+                            <a href="mailto:${portfolioData.personal.email}" class="hover:text-brand-secondary transition-colors hover:scale-110 transform"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="order-1 lg:order-2 flex justify-center relative" data-aos="fade-left">
+                        <div class="relative w-80 h-80 md:w-96 md:h-96 flex items-center justify-center">
+                            <!-- Orbiting Tech Rings -->
+                            <!-- Ring 1 -->
+                            <div class="absolute inset-0 border border-brand-accent/20 rounded-full animate-spin-slow">
+                                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-black p-2 rounded-full border border-brand-accent text-brand-accent"><i class="fab fa-node-js text-2xl"></i></div>
+                                <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-black p-2 rounded-full border border-brand-accent text-brand-accent"><i class="fas fa-database text-2xl"></i></div>
+                            </div>
+                            
+                            <!-- Ring 2 (Reverse) -->
+                            <div class="absolute inset-8 border border-brand-secondary/20 rounded-full animate-spin-slow" style="animation-direction: reverse; animation-duration: 20s;">
+                                <div class="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-black p-2 rounded-full border border-brand-secondary text-brand-secondary"><i class="fab fa-java text-xl"></i></div>
+                                <div class="absolute top-1/2 -left-4 transform -translate-y-1/2 bg-black p-2 rounded-full border border-brand-secondary text-brand-secondary"><i class="fab fa-docker text-xl"></i></div>
+                            </div>
+
+                             <!-- Ring 3 -->
+                            <div class="absolute inset-16 border border-white/10 rounded-full animate-spin-slow" style="animation-duration: 25s;">
+                                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-black p-1.5 rounded-full border border-gray-500 text-gray-300"><i class="fab fa-aws"></i></div>
+                                <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-black p-1.5 rounded-full border border-gray-500 text-gray-300"><i class="fab fa-linux"></i></div>
+                            </div>
+
+                            <div class="absolute inset-0 bg-gradient-to-tr from-brand-accent/10 to-brand-secondary/10 rounded-full blur-2xl"></div>
+                            
+                            <!-- Image Container -->
+                            <div class="absolute inset-24 rounded-full overflow-hidden border-2 border-white/10 glass-panel z-10">
+                                <img src="${getDriveImage(photoId)}" 
+                                     onerror="this.src='${fallbackImage}'" 
+                                     alt="${name}" 
+                                     class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+                            </div>
+                            
+                            <!-- Floating Badge -->
+                            <div class="absolute -right-8 top-10 glass-panel px-4 py-2 rounded-lg border-l-2 border-brand-accent animate-bounce" style="animation-duration: 3s;">
+                                <div class="text-xs text-gray-400 font-mono">Server Status</div>
+                                <div class="text-brand-accent font-bold font-mono text-sm">99.9% UPTIME ●</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAbout() {
+            const container = document.getElementById('about-section');
+            const { summary, stats } = portfolioData.about;
+            
+            let statsHTML = stats.map(stat => `
+                <div class="glass-panel p-6 rounded-xl text-center border-t border-brand-accent/20 hover:bg-brand-accent/5 transition-colors">
+                    <div class="text-3xl font-bold text-white mb-2 font-mono">${stat.value}</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">${stat.label}</div>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div data-aos="fade-up">
+                        <h2 class="text-brand-accent font-mono text-sm font-bold tracking-widest mb-3">01. ABOUT ME</h2>
+                        <h3 class="text-4xl font-bold text-white mb-6">Engineered for <span class="neon-text text-brand-accent">Scalability</span></h3>
+                        <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                            ${summary}
+                        </p>
+                        
+                        <!-- Visual Architecture Diagram -->
+                        <div class="p-6 rounded-xl border border-gray-800 bg-black/40 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
+                            <h4 class="text-white font-bold mb-6 flex items-center gap-2 relative z-10">
+                                <i class="fas fa-project-diagram text-brand-secondary"></i>
+                                <span>Typical Architecture Flow</span>
+                            </h4>
+                            
+                            <div class="flex flex-col md:flex-row items-center justify-between gap-4 relative z-10 text-xs font-mono text-gray-400">
+                                <!-- Step 1 -->
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-10 h-10 rounded bg-gray-800 flex items-center justify-center border border-gray-600">
+                                        <i class="fas fa-user text-white"></i>
+                                    </div>
+                                    <span>Client</span>
+                                </div>
+                                <div class="hidden md:block h-px flex-1 bg-gray-600 relative">
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 bg-black px-1">HTTPS</div>
+                                </div>
+                                <div class="md:hidden h-8 w-px bg-gray-600"></div>
+
+                                <!-- Step 2 -->
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 rounded bg-brand-secondary/20 flex items-center justify-center border border-brand-secondary">
+                                        <i class="fas fa-network-wired text-brand-secondary text-xl"></i>
+                                    </div>
+                                    <span>API Gateway</span>
+                                </div>
+                                <div class="hidden md:block h-px flex-1 bg-gray-600 relative">
+                                     <div class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 bg-black px-1">LB</div>
+                                </div>
+                                <div class="md:hidden h-8 w-px bg-gray-600"></div>
+
+                                <!-- Step 3 -->
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-12 h-12 rounded bg-brand-accent/20 flex items-center justify-center border border-brand-accent animate-pulse">
+                                        <i class="fas fa-cogs text-brand-accent text-xl"></i>
+                                    </div>
+                                    <span class="text-brand-accent">Services</span>
+                                </div>
+                                <div class="hidden md:block h-px flex-1 bg-gray-600"></div>
+                                <div class="md:hidden h-8 w-px bg-gray-600"></div>
+
+                                <!-- Step 4 -->
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-10 h-10 rounded bg-gray-800 flex items-center justify-center border border-gray-600">
+                                        <i class="fas fa-database text-white"></i>
+                                    </div>
+                                    <span>DB Cluster</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4" data-aos="fade-up" data-aos-delay="200">
+                        ${statsHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderSkills() {
+            const container = document.getElementById('skills-section');
+            
+            let skillsHTML = portfolioData.skills.map((category, index) => {
+                let itemsHTML = category.items.map(item => `
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-300 text-sm font-medium">${item.name}</span>
+                            <span class="text-brand-accent text-xs font-mono">${item.level}%</span>
+                        </div>
+                        <div class="skill-track h-2 w-full">
+                            <div class="skill-progress" style="width: 0%" data-width="${item.level}%"></div>
+                        </div>
+                    </div>
+                `).join('');
+
+                return `
+                    <div class="glass-panel p-8 rounded-2xl hover:border-brand-accent/30 transition-colors" data-aos="fade-up" data-aos-delay="${index * 100}">
+                        <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-2">${category.category}</h3>
+                        ${itemsHTML}
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = `
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-brand-accent font-mono text-sm font-bold tracking-widest mb-3">02. TECH STACK</h2>
+                    <h3 class="text-4xl font-bold text-white">Backend <span class="text-brand-secondary">Arsenal</span></h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    ${skillsHTML}
+                </div>
+            `;
+        }
+
+        function renderProjects() {
+            const container = document.getElementById('projects-section');
+            
+            // 1. Render Main Project Cards
+            let projectsHTML = portfolioData.projects.map((project, index) => {
+                let tags = project.techStack.map(tag => `<span class="text-xs font-mono text-brand-accent bg-brand-accent/10 px-2 py-1 rounded">${tag}</span>`).join('');
+                
+                return `
+                    <div class="glass-panel rounded-2xl overflow-hidden group hover:transform hover:-translate-y-2 transition-all duration-500 vanilla-tilt" data-aos="fade-up" data-aos-delay="${index * 100}">
+                        <div class="p-8 relative">
+                            <!-- Icon/Graphic -->
+                            <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                                <i class="fas fa-server text-9xl text-white"></i>
+                            </div>
+                            
+                            <div class="flex justify-between items-start mb-6 relative z-10">
+                                <div class="p-3 bg-brand-secondary/20 rounded-lg text-brand-secondary">
+                                    <i class="fas fa-database text-2xl"></i>
+                                </div>
+                                <a href="${project.github}" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-github text-2xl"></i></a>
+                            </div>
+                            
+                            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-brand-accent transition-colors">${project.title}</h3>
+                            <p class="text-gray-400 mb-6 line-clamp-3 text-sm leading-relaxed">${project.shortDescription}</p>
+                            
+                            <div class="flex flex-wrap gap-2 mb-8">
+                                ${tags}
+                            </div>
+                            
+                            <button onclick="openProjectModal(${project.id})" class="w-full py-3 rounded-lg border border-gray-700 hover:border-brand-accent hover:bg-brand-accent/10 text-white font-medium transition-all flex items-center justify-center gap-2 group-btn">
+                                <span>View Architecture</span>
+                                <i class="fas fa-arrow-right text-xs transform group-btn-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // 2. Render Module Grid (New Section)
+            let modulesHTML = portfolioData.systemModules.map((mod, index) => `
+                <div class="glass-panel p-4 rounded-xl flex items-center gap-4 group hover:bg-white/5 transition-colors border border-white/5 hover:border-brand-accent/30" data-aos="zoom-in" data-aos-delay="${index * 50}">
+                    <div class="w-10 h-10 rounded-lg bg-green-500/10 text-green-500 flex items-center justify-center text-lg border border-green-500/30 shadow-[0_0_10px_rgba(34,197,94,0.2)]">
+                        <i class="${mod.icon}"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm group-hover:text-brand-accent transition-colors">${mod.name}</h4>
+                        <p class="text-gray-500 text-xs font-mono">${mod.desc}</p>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="w-2 h-2 rounded-full bg-green-500 block animate-pulse shadow-[0_0_5px_#22c55e]"></span>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add "Future/Plus" Module
+            modulesHTML += `
+                <div class="glass-panel p-4 rounded-xl flex items-center gap-4 border border-dashed border-gray-700 bg-transparent opacity-60 hover:opacity-100 hover:border-gray-500 transition-all cursor-default group" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="w-10 h-10 rounded-lg bg-gray-800 text-gray-400 flex items-center justify-center text-lg border border-gray-700 group-hover:bg-gray-700 group-hover:text-white transition-colors">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-gray-400 font-bold text-sm group-hover:text-white transition-colors">Architecture Scaling</h4>
+                        <p class="text-gray-600 text-xs font-mono">Future Modules...</p>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = `
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 px-4" data-aos="fade-up">
+                    <div>
+                        <h2 class="text-brand-accent font-mono text-sm font-bold tracking-widest mb-3">03. SELECTED WORKS</h2>
+                        <h3 class="text-4xl font-bold text-white">System <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-secondary">Architectures</span></h3>
+                    </div>
+                </div>
+                
+                <!-- Main Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                    ${projectsHTML}
+                </div>
+                
+                <!-- Modular Architecture Showcase -->
+                <div class="px-4" data-aos="fade-up">
+                    <div class="flex items-center gap-4 mb-8">
+                         <div class="h-px bg-gray-800 flex-1"></div>
+                         <h3 class="text-xl font-bold text-gray-300 font-mono"><i class="fas fa-cubes text-brand-secondary mr-2"></i>Live System Modules</h3>
+                         <div class="h-px bg-gray-800 flex-1"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        ${modulesHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderTimeline() {
+            const container = document.getElementById('timeline-section');
+            
+            // Experience Cards (New Layout: Full Width System Logs)
+            let expHTML = portfolioData.experience.map((job, i) => `
+                <div class="glass-panel p-6 md:p-8 rounded-2xl mb-8 relative border-l-4 border-brand-secondary group hover:bg-brand-secondary/5 transition-all transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="${i * 100}">
+                    <!-- Glowing Dot -->
+                    <div class="absolute -left-[5px] top-8 w-4 h-4 rounded-full bg-brand-secondary shadow-[0_0_10px_#7000ff] hidden md:block"></div>
+                    
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">${job.role}</h3>
+                            <div class="flex flex-wrap items-center gap-3 text-gray-400 font-mono text-sm">
+                                <span class="flex items-center gap-2"><i class="fas fa-building text-brand-secondary"></i> ${job.company}</span>
+                                <span class="hidden md:inline text-gray-600">|</span>
+                                <span class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-brand-secondary"></i> ${job.location}</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 md:mt-0 px-4 py-2 bg-brand-secondary/10 rounded-lg border border-brand-secondary/30 text-brand-secondary font-mono text-xs font-bold whitespace-nowrap">
+                            <i class="far fa-calendar-alt mr-2"></i>${job.period}
+                        </div>
+                    </div>
+                    
+                    <div class="bg-black/30 rounded-xl p-6 font-mono text-sm text-gray-300 border border-white/5 shadow-inner">
+                        <div class="flex items-center gap-2 text-xs text-gray-500 mb-3 border-b border-gray-800 pb-2">
+                            <span class="text-green-500">user@plugseal:~$</span> cat responsibilities.log
+                        </div>
+                        <ul class="space-y-3">
+                            ${job.desc.map(d => `<li class="flex items-start gap-3"><span class="text-brand-accent mt-1">➜</span> <span class="leading-relaxed">${d}</span></li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `).join('');
+
+            // Education Cards (Grid Layout)
+            let eduHTML = portfolioData.education.map((edu, i) => `
+                <div class="glass-panel p-6 rounded-xl relative overflow-hidden group hover:border-brand-accent/30 transition-all hover:bg-white/5" data-aos="fade-up" data-aos-delay="${i * 100 + 200}">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-500">
+                        <i class="fas fa-graduation-cap text-6xl text-white"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="inline-block px-3 py-1 bg-brand-accent/10 rounded text-brand-accent text-xs font-mono mb-3 border border-brand-accent/20">${edu.year}</div>
+                        <h3 class="text-lg font-bold text-white mb-1 group-hover:text-brand-accent transition-colors">${edu.degree}</h3>
+                        <p class="text-gray-400 text-sm flex items-center gap-2"><i class="fas fa-university text-xs"></i> ${edu.school}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <div class="mb-20">
+                    <div class="text-center md:text-left mb-10" data-aos="fade-right">
+                        <h2 class="text-brand-accent font-mono text-sm font-bold tracking-widest mb-3">04. PROFESSIONAL HISTORY</h2>
+                        <h3 class="text-4xl font-bold text-white">Experience <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-secondary to-brand-accent">Log</span></h3>
+                    </div>
+                    <div class="max-w-5xl mx-auto">
+                        ${expHTML}
+                    </div>
+                </div>
+                
+                <div data-aos="fade-up">
+                    <div class="text-center md:text-left mb-10">
+                        <h2 class="text-brand-accent font-mono text-sm font-bold tracking-widest mb-3">05. EDUCATION</h2>
+                        <h3 class="text-4xl font-bold text-white">Academic <span class="text-gray-500">Credentials</span></h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        ${eduHTML}
+                    </div>
+                </div>
+            `;
+        }
+        
+        function renderAchievements() {
+            const container = document.getElementById('achievements-section');
+            let items = portfolioData.achievements.map((ach, i) => `
+                <div class="glass-panel p-6 rounded-xl text-center group hover:bg-brand-accent/5 transition-colors" data-aos="zoom-in" data-aos-delay="${i*100}">
+                    <div class="w-12 h-12 mx-auto bg-gradient-to-br from-brand-accent to-brand-secondary rounded-lg flex items-center justify-center text-black text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="text-white font-bold mb-2">${ach.title}</h3>
+                    <p class="text-gray-400 text-sm">${ach.desc}</p>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <h2 class="text-center text-brand-accent font-mono text-sm font-bold tracking-widest mb-12">06. RECOGNITION</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    ${items}
+                </div>
+            `;
+        }
+
+        function renderContact() {
+            const container = document.getElementById('contact-section');
+            const { email, phone, location, resumeUrl } = portfolioData.personal;
+
+            container.innerHTML = `
+                <div class="max-w-4xl mx-auto glass-panel rounded-3xl overflow-hidden border border-gray-800" data-aos="fade-up">
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div class="p-10 bg-gradient-to-br from-gray-900 to-black relative">
+                            <h2 class="text-3xl font-bold text-white mb-6">Let's Engineer the Future</h2>
+                            <p class="text-gray-400 mb-8">Open to discuss backend architecture, system design, or freelance opportunities.</p>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-center gap-4 text-gray-300">
+                                    <i class="fas fa-envelope text-brand-accent"></i> ${email}
+                                </div>
+                                <div class="flex items-center gap-4 text-gray-300">
+                                    <i class="fas fa-phone text-brand-accent"></i> ${phone}
+                                </div>
+                                <div class="flex items-center gap-4 text-gray-300">
+                                    <i class="fas fa-map-marker-alt text-brand-accent"></i> ${location}
+                                </div>
+                            </div>
+
+                            <a href="${resumeUrl}" target="_blank" class="inline-flex items-center gap-2 text-black bg-white hover:bg-brand-accent px-6 py-3 rounded-lg font-bold transition-colors">
+                                <i class="fas fa-download"></i> Download Resume
+                            </a>
+                        </div>
+                        
+                        <div class="p-10 bg-black/50">
+                            <form id="contact-form" class="space-y-4" novalidate>
+                                <div class="input-group">
+                                    <label class="block text-xs font-mono text-gray-500 mb-1">NAME</label>
+                                    <input type="text" id="contact-name" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none transition-colors" placeholder="Name">
+                                    <span class="error-message">Name is required</span>
+                                </div>
+                                <div class="input-group">
+                                    <label class="block text-xs font-mono text-gray-500 mb-1">EMAIL</label>
+                                    <input type="email" id="contact-email" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none transition-colors" placeholder="email@example.com">
+                                    <span class="error-message">Please enter a valid email</span>
+                                </div>
+                                <div class="input-group">
+                                    <label class="block text-xs font-mono text-gray-500 mb-1">MESSAGE</label>
+                                    <textarea id="contact-message" rows="4" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none transition-colors" placeholder="Let's talk code..."></textarea>
+                                    <span class="error-message">Message cannot be empty</span>
+                                </div>
+                                
+                                <div id="form-status" class="hidden p-3 rounded bg-gray-900 border border-brand-accent text-brand-accent font-mono text-xs"></div>
+
+                                <button type="submit" class="w-full bg-brand-secondary hover:bg-brand-secondary/80 text-white font-bold py-3 rounded-lg transition-colors">
+                                    SEND MESSAGE
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Re-attach listeners after rendering
+            setTimeout(() => {
+                // Initialize EmailJS
+                // IMPORTANT: REPLACE WITH YOUR PUBLIC KEY
+                emailjs.init(portfolioData.contect_email_credentials.public_key); 
+
+                const form = document.getElementById('contact-form');
+                const statusDiv = document.getElementById('form-status');
+                const submitBtn = form.querySelector('button[type="submit"]');
+
+                // Validation Helper
+                function validateEmail(email) {
+                    return String(email)
+                        .toLowerCase()
+                        .match(
+                            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                        );
+                }
+
+                function showError(input, show) {
+                    const group = input.parentElement;
+                    if(show) {
+                        group.classList.add('error');
+                        input.classList.add('input-error');
+                    } else {
+                        group.classList.remove('error');
+                        input.classList.remove('input-error');
+                    }
+                }
+
+                if (form) {
+                    form.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const nameInput = document.getElementById('contact-name');
+                        const emailInput = document.getElementById('contact-email');
+                        const msgInput = document.getElementById('contact-message');
+                        
+                        const name = nameInput.value.trim();
+                        const email = emailInput.value.trim();
+                        const message = msgInput.value.trim();
+                        
+                        let isValid = true;
+
+                        // Validate Name
+                        if (!name) {
+                            showError(nameInput, true);
+                            isValid = false;
+                        } else {
+                            showError(nameInput, false);
+                        }
+
+                        // Validate Email
+                        if (!email || !validateEmail(email)) {
+                            showError(emailInput, true);
+                            isValid = false;
+                        } else {
+                            showError(emailInput, false);
+                        }
+
+                        // Validate Message
+                        if (!message) {
+                            showError(msgInput, true);
+                            isValid = false;
+                        } else {
+                            showError(msgInput, false);
+                        }
+
+                        if (!isValid) return;
+                        
+                        // Proceed to Send with EmailJS
+                        submitBtn.disabled = true;
+                        submitBtn.innerText = "Sending...";
+                        
+                        statusDiv.classList.remove('hidden');
+                        statusDiv.innerText = "> Encrypting and transmitting data...";
+                        
+                        // Params must match your EmailJS template variables
+                        const templateParams = {
+                            title: `Portfolio Contact Form Submission from ${name}`,
+                            name: name,
+                            email: email,
+                            time: new Date().toLocaleString(),
+                            message: message,
+                        };
+
+                        // REPLACE WITH YOUR SERVICE ID AND TEMPLATE ID
+                        emailjs.send(portfolioData.contect_email_credentials.service_id, portfolioData.contect_email_credentials.template_id, templateParams)
+                            .then(function(response) {
+                                statusDiv.classList.add('text-green-400');
+                                statusDiv.innerText = `> Message sent successfully! (ID: ${response.status})`;
+                                submitBtn.innerText = "Sent!";
+                                form.reset();
+                                
+                                setTimeout(() => {
+                                    submitBtn.disabled = false;
+                                    submitBtn.innerText = "SEND MESSAGE";
+                                    statusDiv.classList.add('hidden');
+                                    statusDiv.classList.remove('text-green-400');
+                                }, 5000);
+                            }, function(error) {
+                                console.error('FAILED...', error);
+                                statusDiv.classList.add('text-red-400');
+                                statusDiv.innerText = `> Transmission failed: ${JSON.stringify(error)}`;
+                                submitBtn.disabled = false;
+                                submitBtn.innerText = "RETRY";
+                            });
+                    });
+                }
+            }, 500);
+        }
+
+        // ==========================================
+        // 4. MODAL LOGIC
+        // ==========================================
+        const modal = document.getElementById('project-modal');
+        const modalBody = document.getElementById('modal-body');
+        const closeModalBtn = document.getElementById('close-modal');
+
+        function openProjectModal(id) {
+            const project = portfolioData.projects.find(p => p.id === id);
+            if(!project) return;
+
+            modalBody.innerHTML = `
+                <div class="flex flex-col gap-6">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                             <h2 class="text-3xl font-bold text-white">${project.title}</h2>
+                             <a href="${project.github}" class="text-2xl text-gray-400 hover:text-white"><i class="fab fa-github"></i></a>
+                        </div>
+                        <p class="text-brand-accent font-mono text-sm">${project.shortDescription}</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white/5 p-6 rounded-xl border border-white/5">
+                            <h3 class="text-lg font-bold text-white mb-3"><i class="fas fa-layer-group text-brand-secondary mr-2"></i> Architecture</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">${project.architecture}</p>
+                        </div>
+                        <div class="bg-white/5 p-6 rounded-xl border border-white/5">
+                            <h3 class="text-lg font-bold text-white mb-3"><i class="fas fa-bolt text-yellow-400 mr-2"></i> Challenges</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">${project.challenges}</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-brand-accent/5 p-6 rounded-xl border border-brand-accent/20">
+                        <h3 class="text-lg font-bold text-white mb-3"><i class="fas fa-chart-line text-green-400 mr-2"></i> Results</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">${project.results}</p>
+                    </div>
+                    
+                    <div>
+                         <h4 class="text-sm font-mono text-gray-500 mb-2">TECH STACK</h4>
+                         <div class="flex flex-wrap gap-2">
+                            ${project.techStack.map(t => `<span class="px-3 py-1 bg-gray-800 rounded text-sm text-white border border-gray-700">${t}</span>`).join('')}
+                         </div>
+                    </div>
+                    
+                    <div class="pt-4 border-t border-gray-800">
+                         <p class="text-gray-400 text-sm italic">"${project.detailedDescription}"</p>
+                    </div>
+                </div>
+            `;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close on clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // ==========================================
+        // 5. INITIALIZATION
+        // ==========================================
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update Resume Links
+            document.getElementById('nav-resume-btn').href = portfolioData.personal.resumeUrl;
+
+            // Render Sections
+            renderHero();
+            renderAbout();
+            renderSkills();
+            renderProjects();
+            renderTimeline();
+            renderAchievements();
+            renderContact();
+
+            // Init AOS
+            AOS.init({
+                duration: 800,
+                offset: 50,
+                once: true,
+                easing: 'ease-out-cubic'
+            });
+
+            // Init VanillaTilt for Project Cards
+            setTimeout(() => {
+                VanillaTilt.init(document.querySelectorAll(".vanilla-tilt"), {
+                    max: 5,
+                    speed: 400,
+                    glare: true,
+                    "max-glare": 0.2,
+                });
+            }, 500); // Small delay to ensure DOM is ready
+
+            // Animate Skill Bars on Scroll
+            gsap.registerPlugin(ScrollTrigger);
+            const skillProgressBars = document.querySelectorAll('.skill-progress');
+            skillProgressBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                gsap.to(bar, {
+                    width: width,
+                    duration: 1.5,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: bar,
+                        start: "top 90%",
+                    }
+                });
+            });
+
+            // Mobile Menu Logic
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const closeMenuBtn = document.getElementById('close-mobile-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+            closeMenuBtn.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+            mobileLinks.forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('translate-x-full')));
+
+            // Theme Toggle Logic
+            const themeBtn = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+            const lightIcon = document.querySelector('.light-icon');
+            const darkIcon = document.querySelector('.dark-icon');
+
+            themeBtn.addEventListener('click', () => {
+                html.classList.toggle('light-mode');
+                if(html.classList.contains('light-mode')) {
+                    html.classList.remove('dark');
+                    lightIcon.classList.remove('hidden');
+                    darkIcon.classList.add('hidden');
+                    // Invert styles for light mode
+                    document.body.style.backgroundColor = '#f8fafc';
+                    document.body.style.color = '#1e293b';
+                } else {
+                    html.classList.add('dark');
+                    lightIcon.classList.add('hidden');
+                    darkIcon.classList.remove('hidden');
+                    document.body.style.backgroundColor = '#050505';
+                    document.body.style.color = '#e2e8f0';
+                }
+            });
+        });
+
+    </script>
+</body>
 </html>
